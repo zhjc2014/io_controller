@@ -14,6 +14,7 @@ enum{
     INDEX_1,
     INDEX_2,
     INDEX_3,
+    INDEX_MAX
 };
 
 uint32_t flag_enable_cpf = 0;
@@ -21,6 +22,7 @@ const uint32_t debug_id = DEFAULT_DEBUG_DEV;
 //the car will request for addr asignment after start up.
 uint32_t can_lost_cnt = 0;
 
+uint32_t can_addr = 0x00;
 REG_DEBUG(debug_id);
 
 // ADD_LINK(PC_LINK_ID, PC_LINK_PRIO, PC_LINK_DEV, PC_LINK_PROTOCOL, 512, 1, 0);
@@ -30,7 +32,6 @@ void set_can_filter(void)
 {
     const int can_addr_bit_num = 4;
     uint32_t gpio_state;
-    uint32_t can_addr = 0x00;
     int i;
     for (i = 0; i < can_addr_bit_num; i++){
         hal_app_read(DRV_GPIO, (uint8_t *)&gpio_state, sizeof(uint32_t), gpio_canaddr_bit0 + i, NULL);
@@ -96,8 +97,8 @@ static void can_info_read(void)
 {
     int i;
     int len;
-    int index;
-    static int last_index = INDEX_0;
+    uint32_t index;
+    static uint32_t last_index = INDEX_0;
     //can info read write
     can_data_t rx_data[CAN_FIFO_SIZE];
     //clear can rx data buffer
@@ -107,7 +108,7 @@ static void can_info_read(void)
         can_lost_cnt = 0;
         if (rx_data[i].data[0] == 0xAA && rx_data[i].data[1] == 0xBB){
             index = rx_data[i].data[0];
-            if (last_index != index){
+            if (last_index != index && index < INDEX_MAX){
                 set_io_status(index);
                 last_index = index;
             }
@@ -119,23 +120,20 @@ static void can_info_read(void)
 
 static void can_info_write(void)
 {
-    //can info write
-    // int i;
-    // for (i = 0; i < MAX_MOTOR_NUM; i++)
-    // {
-    //     can_data_t tx_data;
-    //     memset(&tx_data, 0, sizeof tx_data);
-    //     //contrl setting data
-    //     tx_data.id = HOST_GADDR + i / 2;
-    //     tx_data.len = 8;
-    //     tx_data.data[0] = CAN_CTRL_DATA;
-    //     tx_data.data[1] = ctrl_setting[i].channel;
-    //     tx_data.data[2] = ctrl_setting[i].mode;
-    //     tx_data.data[3] = ctrl_setting[i].paramIndex;
-    //     memcpy(&tx_data.data[4], &ctrl_setting[i].value, sizeof ctrl_setting[i].value);
-    //     hal_app_write(DRV_CAN, (uint8_t *)&tx_data, 0, 0, NULL);
-    // }
-    // hal_app_ctrl(DRV_CAN, CAN_START_SEND, NULL, 0, NULL);
+    int i;
+    for (i = 0; i < 10; i++)
+    {
+        can_data_t tx_data;
+        memset(&tx_data, 0, sizeof tx_data);
+        //contrl setting data
+        tx_data.id = can_addr;
+        tx_data.len = 8;
+        tx_data.data[0] = 0xAA;
+        tx_data.data[1] = 0xBB;
+        tx_data.data[2] = i;        
+        hal_app_write(DRV_CAN, (uint8_t *)&tx_data, 0, 0, NULL);
+    }
+    hal_app_ctrl(DRV_CAN, CAN_START_SEND, NULL, 0, NULL);
 }
 
 static void can_warning_clear(void)
