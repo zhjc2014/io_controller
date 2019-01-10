@@ -5,30 +5,30 @@
 enum
 {
     DRV_SYSTICK  = 0,   /* sys tick 必须为0*/  //系统时钟是必须的一个驱动设备，必须注册
-    DRV_UART1,
-    DRV_UART2,
-    DRV_UART3,
-    DRV_WL_UART,
-    DRV_USB_VCP,
-    DRV_USB_HID,
+    // DRV_UART1,
+    // DRV_UART2,
+    // DRV_UART3,
+    // DRV_WL_UART,
+    // DRV_USB_VCP,
+    // DRV_USB_HID,
     DRV_CAN,
     DRV_RTT,
-    DRV_FALSH,
+    // DRV_FALSH,
     DRV_LED,
     DRV_SYS,
-    DRV_KEY,
-    DRV_ADC,
+    // DRV_KEY,
+    // DRV_ADC,
     DRV_GPIO,
     DRV_IWDG,
-    DRV_PWM,
-    DRV_BAT,
-    DRV_RANDOM,
-    DRV_RF24L01_0,
-    DRV_RF24L01_1,
-    DRV_RF24L01_2,
-    DRV_RF24L01_3,
-    DRV_RF24L01_4,
-    DRV_RF24L01_5,
+    // DRV_PWM,
+    // DRV_BAT,
+    // DRV_RANDOM,
+    // DRV_RF24L01_0,
+    // DRV_RF24L01_1,
+    // DRV_RF24L01_2,
+    // DRV_RF24L01_3,
+    // DRV_RF24L01_4,
+    // DRV_RF24L01_5,
 };
 
 enum
@@ -45,34 +45,34 @@ enum
 //是否开启对应驱动
 #define ENABLE_SYS_TICK_DRV         1 
 #if (DEFAULT_PC_LINK_DEV == DRV_UART1)
-    #define ENABLE_UART_1_DRV           1 
-    #define ENABLE_USB_VCP_DRV          0
-    #define ENABLE_CAN                    1
+    // #define ENABLE_UART_1_DRV           1 
+    // #define ENABLE_USB_VCP_DRV          0
+    #define ENABLE_CAN                  1
 #else
     #define ENABLE_UART_1_DRV           0 
     #define ENABLE_USB_VCP_DRV          1
-    #define ENABLE_CAN                    0
+    #define ENABLE_CAN                  0
 #endif
-#define ENABLE_UART_2_DRV           0 
-#define ENABLE_UART_3_DRV           0 
-#define ENABLE_USB_HID_DRV          0
+// #define ENABLE_UART_2_DRV           0 
+// #define ENABLE_UART_3_DRV           0 
+// #define ENABLE_USB_HID_DRV          0
 #define ENABLE_RTT_DRV              1
-#define ENABLE_FALSH_DRV            1
+// #define ENABLE_FALSH_DRV            1
 #define ENABLE_SYS_DRV              1
 #define ENABLE_LED_DRV              1
-#define ENABLE_KEY_DRV              0
-#define ENABLE_ADC_DRV              0
+// #define ENABLE_KEY_DRV              0
+// #define ENABLE_ADC_DRV              0
 #define ENABLE_GPIO_DRV             1
 #define ENABLE_IWDG_DRV             1
-#define ENABLE_PWM_DRV              1
-#define ENABLE_BAT_DRV              0
-#define ENABLE_RANDOM_DRV           1
-#define ENABLE_RF24L01_0_DRV        1
-#define ENABLE_RF24L01_1_DRV        1
-#define ENABLE_RF24L01_2_DRV        1
-#define ENABLE_RF24L01_3_DRV        1
-#define ENABLE_RF24L01_4_DRV        1
-#define ENABLE_RF24L01_5_DRV        1
+// #define ENABLE_PWM_DRV              1
+// #define ENABLE_BAT_DRV              0
+// #define ENABLE_RANDOM_DRV           1
+// #define ENABLE_RF24L01_0_DRV        1
+// #define ENABLE_RF24L01_1_DRV        1
+// #define ENABLE_RF24L01_2_DRV        1
+// #define ENABLE_RF24L01_3_DRV        1
+// #define ENABLE_RF24L01_4_DRV        1
+// #define ENABLE_RF24L01_5_DRV        1
 
 
 #define FLASH_START_ADDRESS         (0x8000000)
