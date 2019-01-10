@@ -6,12 +6,12 @@
 
 
 #if ENABLE_LED_DRV
-static int32_t drv_led_init		(void)
+static int32_t drv_led_init        (void)
 {
-	bsp_pwm_init();
-	return 0;
+    bsp_pwm_init();
+    return 0;
 }
-int32_t drv_led_write		(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p_real)
+int32_t drv_led_write        (uint8_t* pSrc,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
     uint32_t val = 0;
     if(len==sizeof(uint32_t))

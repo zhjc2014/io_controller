@@ -14,13 +14,13 @@ int32_t drv_iwdg_init   (void)
 }
 
 
-int32_t drv_iwdg_write  (uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p_real)
+int32_t drv_iwdg_write  (uint8_t* pSrc,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
     bsp_iwdg_write();
     return 0;
 }
 
-int32_t drv_iwdg_read   (uint8_t* dest,uint32_t len	,uint32_t offset,uint32_t* p_real)
+int32_t drv_iwdg_read   (uint8_t* dest,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
     int ret;
     ret = bsp_iwdg_read(offset);

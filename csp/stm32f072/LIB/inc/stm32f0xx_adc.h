@@ -104,8 +104,8 @@ typedef struct
 #define ADC_ClockMode_SynClkDiv2               ADC_CFGR2_CKMODE_0   /*!<  Synchronous clock mode divided by 2 */
 #define ADC_ClockMode_SynClkDiv4               ADC_CFGR2_CKMODE_1   /*!<  Synchronous clock mode divided by 4 */
 #define IS_ADC_CLOCKMODE(CLOCK) (((CLOCK) == ADC_ClockMode_AsynClk) ||\
-				                        ((CLOCK) == ADC_ClockMode_SynClkDiv2) ||\
-				                        ((CLOCK) == ADC_ClockMode_SynClkDiv4))
+                                        ((CLOCK) == ADC_ClockMode_SynClkDiv2) ||\
+                                        ((CLOCK) == ADC_ClockMode_SynClkDiv4))
 
 /**
   * @}

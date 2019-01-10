@@ -15,7 +15,7 @@ void ucprobe_send_ack(hal_frame_info_t* p_frame_info,uint8_t* pbuf,uint16_t len)
     uint8_t addr = p_frame_info->dest;
     p_frame_info->dest = p_frame_info->src;
     p_frame_info->src  = addr;
-	p_frame_info->is_ack = 1;
+    p_frame_info->is_ack = 1;
     p_frame_info->pdata = pbuf;
     p_frame_info->data_len = len;
     
@@ -52,25 +52,25 @@ int32_t         uc_probe_query_RX_MAX       (hal_frame_info_t* p_frame_info)
                 ucprobe_send_ack(p_frame_info,(uint8_t*)&end_test_ack,sizeof(end_test_ack_t));
             }
             break;
-		case PROBE_COM_QUERY_FMT_SUPPORT:
+        case PROBE_COM_QUERY_FMT_SUPPORT:
             {
                 fmt_support_ack_t fmt_support_ack={0};
                 fmt_support_ack.status = 1;
                 fmt_support_ack.modify = 0xf;
                 fmt_support_ack.support_rx_query = PROBE_COM_FMT_RX_QUERY;
-				fmt_support_ack.support_rx_rd= PROBE_COM_FMT_RX_RD;
-				fmt_support_ack.support_rx_rd_multi= PROBE_COM_FMT_RX_RD_MULTI;
-				fmt_support_ack.support_rx_wr= PROBE_COM_FMT_RX_WR;
-				fmt_support_ack.support_rx_wr_multi= PROBE_COM_FMT_RX_WR_MULTI;
-				fmt_support_ack.support_rx_str_in= PROBE_COM_FMT_RX_STR_IN;
-				fmt_support_ack.support_rx_str_out= PROBE_COM_FMT_RX_STR_OUT;
-				fmt_support_ack.support_rx_terminal_exe= PROBE_COM_FMT_RX_TERMINAL_EXEC;
-				fmt_support_ack.support_rx_terminal_in= PROBE_COM_FMT_RX_TERMINAL_IN;
-				fmt_support_ack.support_rx_terminal_out= PROBE_COM_FMT_RX_TERMINAL_OUT;
+                fmt_support_ack.support_rx_rd= PROBE_COM_FMT_RX_RD;
+                fmt_support_ack.support_rx_rd_multi= PROBE_COM_FMT_RX_RD_MULTI;
+                fmt_support_ack.support_rx_wr= PROBE_COM_FMT_RX_WR;
+                fmt_support_ack.support_rx_wr_multi= PROBE_COM_FMT_RX_WR_MULTI;
+                fmt_support_ack.support_rx_str_in= PROBE_COM_FMT_RX_STR_IN;
+                fmt_support_ack.support_rx_str_out= PROBE_COM_FMT_RX_STR_OUT;
+                fmt_support_ack.support_rx_terminal_exe= PROBE_COM_FMT_RX_TERMINAL_EXEC;
+                fmt_support_ack.support_rx_terminal_in= PROBE_COM_FMT_RX_TERMINAL_IN;
+                fmt_support_ack.support_rx_terminal_out= PROBE_COM_FMT_RX_TERMINAL_OUT;
 
                 ucprobe_send_ack(p_frame_info,(uint8_t*)&fmt_support_ack,sizeof(fmt_support_ack_t));
 
-				//DBG_I("PROBE_COM_QUERY_FMT_SUPPORT!!!");
+                //DBG_I("PROBE_COM_QUERY_FMT_SUPPORT!!!");
             }
             break;
         

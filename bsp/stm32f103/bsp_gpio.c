@@ -41,9 +41,9 @@ void bsp_gpio_init(void)
     
     GPIO_InitStructure.GPIO_Speed   = GPIO_Speed_50MHz;//定义速度，最高是50MHz
 
-	//special handle
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
-	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);	//for PB3 & A15 gpio
+    //special handle
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+    GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);    //for PB3 & A15 gpio
 
     for(i=0;i<ARRY_ITEMS_NUM(gpio_tab);i++)
     {
@@ -67,7 +67,7 @@ int32_t bsp_gpio_write(uint8_t ch,uint32_t val)
          if(val){  GPIO_SetBits(gpio_tab[ch].port, gpio_tab[ch].pin);}
          else   {GPIO_ResetBits(gpio_tab[ch].port, gpio_tab[ch].pin);}
     }
-	return 0;
+    return 0;
 }
 
 uint32_t bsp_gpio_read(uint8_t ch)
@@ -76,7 +76,7 @@ uint32_t bsp_gpio_read(uint8_t ch)
     {
         return GPIO_ReadInputDataBit(gpio_tab[ch].port, gpio_tab[ch].pin);
     }
-	return 0;
+    return 0;
 }
 
 #if 1
@@ -97,7 +97,7 @@ int32_t set_gpio(uint8_t argc, uint8_t *argv[])
     {
         DBG_W("warn the bsp_gpio_write param is error: eg:bsp_gpio_write ch val");
     }
-	return RET_OK;
+    return RET_OK;
 }
 
 REG_SHELL_CMD(set_gpio,0,set_gpio,"set_gpio", "eg:set_gpio ch val\r\n ");

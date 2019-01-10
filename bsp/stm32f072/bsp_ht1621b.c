@@ -7,12 +7,12 @@
 
 void delay_us(uint32_t nus)
 {
-//	uint32_t i = 0;
-//	uint32_t j = 0;
-//	for(i=0;i<nus;i++)
-//	{
-//		for(j=0;j<10;j++);
-//	}
+//    uint32_t i = 0;
+//    uint32_t j = 0;
+//    for(i=0;i<nus;i++)
+//    {
+//        for(j=0;j<10;j++);
+//    }
 }
 
 union _LCD_RAM_DATA lcd_ram;

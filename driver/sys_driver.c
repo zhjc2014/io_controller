@@ -7,9 +7,9 @@
 
 #if ENABLE_SYS_DRV
 
-static int32_t drv_sys_init		(void)
+static int32_t drv_sys_init        (void)
 {
-	return 0;
+    return 0;
 }
 
 static void system_reset(void)
@@ -97,7 +97,7 @@ void IAP_Set(void)
     SYSCFG_MemoryRemapConfig(SYSCFG_MemoryRemap_SRAM);
     __enable_irq();
     
-}	
+}    
 #endif
 
 
@@ -159,7 +159,7 @@ static int32_t go(uint8_t argc, uint8_t *argv[])
     {
         //DBG_E("go cmd param is error! eg: go address");
     }
-	return RET_OK;
+    return RET_OK;
 }
 
 REG_SHELL_CMD(go,0,go,"go address!!", "eg: go address!\r\n ");
@@ -168,8 +168,8 @@ REG_SHELL_CMD(go,0,go,"go address!!", "eg: go address!\r\n ");
 #if 1
 static int32_t reset(uint8_t argc, uint8_t *argv[])
 {
-    system_reset();	
-	return RET_OK;
+    system_reset();    
+    return RET_OK;
 }
 
 REG_SHELL_CMD(reset,0,reset,"reset!!", "eg: reset!\r\n ");

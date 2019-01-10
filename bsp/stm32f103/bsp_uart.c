@@ -7,32 +7,32 @@
 
 typedef struct {
     //uart-clk      tx-pin  rx-pin  def_baud irq_num  tx-buf   rx-buf
-    USART_TypeDef*	uart_port;
-    uint32_t		uart_clk;
-    uint32_t		uart_def_baud;
+    USART_TypeDef*    uart_port;
+    uint32_t        uart_clk;
+    uint32_t        uart_def_baud;
     uint16_t        uart_data_bits;
     uint16_t        uart_stop_bits;
     uint16_t        uart_check_bits;
-    uint16_t		uart_irq_num;
+    uint16_t        uart_irq_num;
     IRQn_Type       uart_irq_src;
-    GPIO_TypeDef*	uart_tx_port;
+    GPIO_TypeDef*    uart_tx_port;
     uint32_t        uart_tx_port_clk;
-    uint16_t		uart_tx_pin;
-    GPIO_TypeDef*	uart_rx_port;
+    uint16_t        uart_tx_pin;
+    GPIO_TypeDef*    uart_rx_port;
     uint32_t        uart_rx_port_clk;
-    uint16_t		uart_rx_pin;
-    uint8_t*		uart_tx_buf;
-    uint8_t*		uart_rx_buf;
-    kfifo_t			uart_tx_fifo;
-    kfifo_t			uart_rx_fifo;
+    uint16_t        uart_rx_pin;
+    uint8_t*        uart_tx_buf;
+    uint8_t*        uart_rx_buf;
+    kfifo_t            uart_tx_fifo;
+    kfifo_t            uart_rx_fifo;
     volatile uint8_t   flag_is_in_sending;
-    uint8_t 		send_char;
-    uint8_t 		recv_char;
+    uint8_t         send_char;
+    uint8_t         recv_char;
 
 } uart_init_tab_t;
 
 #define ADD_UART_PORT(port,uart_clk,baud,stop,chk,irq,irq_src,tx_port,tx_pin,rx_port,rx_pin,tx_buf,tx_buf_size,rx_buf,rx_buf_size) \
-				{port,uart_clk,baud,USART_WordLength_8b,stop,chk,irq,irq_src,tx_port,RCC_APB2Periph_##tx_port,tx_pin,rx_port,RCC_APB2Periph_##rx_port,rx_pin,tx_buf,rx_buf,{NULL,tx_buf_size,tx_buf,0,0},{NULL,rx_buf_size,rx_buf,0,0}}
+                {port,uart_clk,baud,USART_WordLength_8b,stop,chk,irq,irq_src,tx_port,RCC_APB2Periph_##tx_port,tx_pin,rx_port,RCC_APB2Periph_##rx_port,rx_pin,tx_buf,rx_buf,{NULL,tx_buf_size,tx_buf,0,0},{NULL,rx_buf_size,rx_buf,0,0}}
 
 
 uint8_t uart1_tx_buf[UART1_TX_BUF_SIZE];
@@ -70,15 +70,15 @@ static void bsp_uart_config (uint8_t uart_port, uint32_t baud, uint32_t data_bit
     }
 
 #if ENABLE_UARTS1_REMAP
-	if (g_uart_init_tab[uart_port].uart_port == USART1) {
-		GPIO_PinRemapConfig(GPIO_Remap_USART1, ENABLE);
-	}
+    if (g_uart_init_tab[uart_port].uart_port == USART1) {
+        GPIO_PinRemapConfig(GPIO_Remap_USART1, ENABLE);
+    }
 #endif
 
 #if ENABLE_UARTS2_REMAP
-	if (g_uart_init_tab[uart_port].uart_port == USART2) {
-		GPIO_PinRemapConfig(GPIO_Remap_USART2, ENABLE);
-	}
+    if (g_uart_init_tab[uart_port].uart_port == USART2) {
+        GPIO_PinRemapConfig(GPIO_Remap_USART2, ENABLE);
+    }
 #endif
 
 #if ENABLE_UARTS3_REMAP
@@ -89,7 +89,7 @@ static void bsp_uart_config (uint8_t uart_port, uint32_t baud, uint32_t data_bit
 
     GPIO_InitStructure.GPIO_Pin = g_uart_init_tab[uart_port].uart_tx_pin;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;	//复用推挽输出
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;    //复用推挽输出
     GPIO_Init(g_uart_init_tab[uart_port].uart_tx_port, &GPIO_InitStructure);//初始化GPIOA.9
 
     //USART1_RX
@@ -98,12 +98,12 @@ static void bsp_uart_config (uint8_t uart_port, uint32_t baud, uint32_t data_bit
     GPIO_Init(g_uart_init_tab[uart_port].uart_rx_port, &GPIO_InitStructure);//初始化GPIOA.10
 
     //Usart1 NVIC 配置
-////	NVIC_InitStructure.NVIC_IRQChannel = g_uart_init_tab[uart_port].uart_irq_src;
-////	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=0 ;//抢占优先级0
-////	NVIC_InitStructure.NVIC_IRQChannelSubPriority = g_uart_init_tab[uart_port].uart_irq_num;		//子优先级3
-//	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			//IRQ通道使能
-//	NVIC_Init(&NVIC_InitStructure);	//根据指定的参数初始化VIC寄存器
-	NVIC_SetPriority(g_uart_init_tab[uart_port].uart_irq_src, g_uart_init_tab[uart_port].uart_irq_num);
+////    NVIC_InitStructure.NVIC_IRQChannel = g_uart_init_tab[uart_port].uart_irq_src;
+////    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=0 ;//抢占优先级0
+////    NVIC_InitStructure.NVIC_IRQChannelSubPriority = g_uart_init_tab[uart_port].uart_irq_num;        //子优先级3
+//    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;            //IRQ通道使能
+//    NVIC_Init(&NVIC_InitStructure);    //根据指定的参数初始化VIC寄存器
+    NVIC_SetPriority(g_uart_init_tab[uart_port].uart_irq_src, g_uart_init_tab[uart_port].uart_irq_num);
     NVIC_EnableIRQ(g_uart_init_tab[uart_port].uart_irq_src);
 
     //USART 初始化设置
@@ -113,7 +113,7 @@ static void bsp_uart_config (uint8_t uart_port, uint32_t baud, uint32_t data_bit
     USART_InitStructure.USART_StopBits = stop_bit;//一个停止位
     USART_InitStructure.USART_Parity = chk_bit;//无奇偶校验位
     USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;//无硬件数据流控制
-    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//收发模式
+    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;    //收发模式
 
     USART_Init(g_uart_init_tab[uart_port].uart_port, &USART_InitStructure); //初始化串口1
 
@@ -185,7 +185,7 @@ int32_t bsp_uart_send(uint8_t uart_port, uint8_t* pbuf, int32_t len)
     return real_len;
 }
 
-int32_t bsp_uart_read		(uint8_t uart_port, uint8_t* p_dest, int32_t len	)
+int32_t bsp_uart_read        (uint8_t uart_port, uint8_t* p_dest, int32_t len    )
 {
     int32_t real_len = 0;
     if(uart_port >= ARRY_ITEMS_NUM(g_uart_init_tab)) {
@@ -197,7 +197,7 @@ int32_t bsp_uart_read		(uint8_t uart_port, uint8_t* p_dest, int32_t len	)
 }
 
 
-void  bsp_uart_set_mode		(uint8_t uart_port, uint32_t mode)
+void  bsp_uart_set_mode        (uint8_t uart_port, uint32_t mode)
 {
     send_mode[uart_port] = mode;
     bsp_uart_config(uart_port, g_uart_init_tab[uart_port].uart_def_baud,
@@ -267,9 +267,9 @@ void uart_irq_action(uint8_t uart_port)
 
 
 //    if (USART_GetITStatus(g_uart_init_tab[uart_port].uart_port, USART_IT_TC) == SET)
-//	{
-//	    USART_ClearITPendingBit(g_uart_init_tab[uart_port].uart_port,USART_IT_TC);
-//	}
+//    {
+//        USART_ClearITPendingBit(g_uart_init_tab[uart_port].uart_port,USART_IT_TC);
+//    }
 }
 
 void USART1_IRQHandler(void)

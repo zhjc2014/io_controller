@@ -45,16 +45,16 @@
 
 
 #define REG_SHELL_CMD_X(name,maxargs,cmd,usage,detail)  \
-			const shell_cmd_t    cmd_##name = {#name,maxargs,cmd,usage,detail};\
-			AUTO_REG_ITEM(name,AUTO_REG_TYPE_SHELL_X,(void*)&cmd_##name)
+            const shell_cmd_t    cmd_##name = {#name,maxargs,cmd,usage,detail};\
+            AUTO_REG_ITEM(name,AUTO_REG_TYPE_SHELL_X,(void*)&cmd_##name)
                 
 #define REG_SHELL_CMD(name,maxargs,cmd,usage,detail)  \
-			const shell_cmd_t    cmd_##name = {#name,maxargs,cmd,usage,detail};\
-			AUTO_REG_ITEM(name,AUTO_REG_TYPE_SHELL,(void*)&cmd_##name)
+            const shell_cmd_t    cmd_##name = {#name,maxargs,cmd,usage,detail};\
+            AUTO_REG_ITEM(name,AUTO_REG_TYPE_SHELL,(void*)&cmd_##name)
                                     
 #define REG_TASK(group,perio,func)  \
-			task_item_t    task_##func  = {#func,group,perio,func};\
-			AUTO_REG_ITEM(func,AUTO_REG_TYPE_TASK,(void*)&task_##func)
+            task_item_t    task_##func  = {#func,group,perio,func};\
+            AUTO_REG_ITEM(func,AUTO_REG_TYPE_TASK,(void*)&task_##func)
                 
 #define VH_TASK   0              
 #define HI_TASK   1      

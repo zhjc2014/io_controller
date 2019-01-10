@@ -9,17 +9,17 @@
 #if ENABLE_MPU6500_DRV
 
 
-static int32_t drv_mpu_init		(void)
+static int32_t drv_mpu_init        (void)
 {
     return MPU6500Init();
 }
 
-static int32_t drv_mpu_write	(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_mpu_write    (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     return 0;
 }
 
-static int32_t drv_mpu_read	(uint8_t* p_dest, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_mpu_read    (uint8_t* p_dest, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     #if  ACCX_READ_EN
     *(int16_t*)p_dest     = mpu_accx_read(offset);

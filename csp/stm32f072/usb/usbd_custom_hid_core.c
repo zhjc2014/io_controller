@@ -163,41 +163,41 @@ const uint8_t USBD_HID_CfgDesc[CUSTOMHID_SIZ_CONFIG_DESC] =
   0x00,          /* bInterval: Polling Interval (32 ms) */
   /* 34 */
   
-  0x07,	         /* bLength: Endpoint Descriptor size */
-  USB_ENDPOINT_DESCRIPTOR_TYPE,	/* bDescriptorType: */
-  /*	Endpoint descriptor type */
-  HID_OUT_EP,	/* bEndpointAddress: */
-  /*	Endpoint Address (OUT) */
-  0x03,	/* bmAttributes: Interrupt endpoint */
-  HID_OUT_PACKET,	/* wMaxPacketSize: 2 Bytes max  */
+  0x07,             /* bLength: Endpoint Descriptor size */
+  USB_ENDPOINT_DESCRIPTOR_TYPE,    /* bDescriptorType: */
+  /*    Endpoint descriptor type */
+  HID_OUT_EP,    /* bEndpointAddress: */
+  /*    Endpoint Address (OUT) */
+  0x03,    /* bmAttributes: Interrupt endpoint */
+  HID_OUT_PACKET,    /* wMaxPacketSize: 2 Bytes max  */
   0x00,
-  0x00,	/* bInterval: Polling Interval (20 ms) */
+  0x00,    /* bInterval: Polling Interval (20 ms) */
   /* 41 */
 } ;
 
 const uint8_t CustomHID_ReportDescriptor[CUSTOMHID_SIZ_REPORT_DESC] =
 {
-	0x05, 0x8c, /* USAGE_PAGE (ST Page) */
-	0x09, 0x01, /* USAGE (Demo Kit) */
-	0xa1, 0x01, /* COLLECTION (Application) */
-	 
-	// The Input report 
-	0x09,0x03, // USAGE ID - Vendor defined 
-	0x15,0x00, // LOGICAL_MINIMUM (0) 
-	0x26,0x00, 0xFF, // LOGICAL_MAXIMUM (255) 
-	0x75,0x08, // REPORT_SIZE (8bit) 
-	0x95,0x40, // REPORT_COUNT (64Byte) 
-	0x81,0x02, // INPUT (Data,Var,Abs) 
+    0x05, 0x8c, /* USAGE_PAGE (ST Page) */
+    0x09, 0x01, /* USAGE (Demo Kit) */
+    0xa1, 0x01, /* COLLECTION (Application) */
+     
+    // The Input report 
+    0x09,0x03, // USAGE ID - Vendor defined 
+    0x15,0x00, // LOGICAL_MINIMUM (0) 
+    0x26,0x00, 0xFF, // LOGICAL_MAXIMUM (255) 
+    0x75,0x08, // REPORT_SIZE (8bit) 
+    0x95,0x40, // REPORT_COUNT (64Byte) 
+    0x81,0x02, // INPUT (Data,Var,Abs) 
 
-	// The Output report 
-	0x09,0x04, // USAGE ID - Vendor defined 
-	0x15,0x00, // LOGICAL_MINIMUM (0) 
-	0x26,0x00,0xFF, // LOGICAL_MAXIMUM (255) 
-	0x75,0x08, // REPORT_SIZE (8bit) 
-	0x95,0x40, // REPORT_COUNT (64Byte) 
-	0x91,0x02, // OUTPUT (Data,Var,Abs) 
+    // The Output report 
+    0x09,0x04, // USAGE ID - Vendor defined 
+    0x15,0x00, // LOGICAL_MINIMUM (0) 
+    0x26,0x00,0xFF, // LOGICAL_MAXIMUM (255) 
+    0x75,0x08, // REPORT_SIZE (8bit) 
+    0x95,0x40, // REPORT_COUNT (64Byte) 
+    0x91,0x02, // OUTPUT (Data,Var,Abs) 
 
-	0xc0 /* END_COLLECTION */
+    0xc0 /* END_COLLECTION */
 
 };
 

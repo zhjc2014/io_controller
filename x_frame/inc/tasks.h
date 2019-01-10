@@ -14,15 +14,15 @@ typedef struct {
     pf_exe_func     exe_func;
     uint32_t        last_exe_time;
     uint32_t        task_used_time;
-	uint8_t         flag_init;
-	uint8_t         flag_sem;
+    uint8_t         flag_init;
+    uint8_t         flag_sem;
     list_t          list;    
 }task_item_t;
 
 typedef struct
 {
     uint32_t  task_num;
-	list_t    task_head;
+    list_t    task_head;
 }task_ctrl_t;
 
 

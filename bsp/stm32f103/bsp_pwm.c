@@ -48,11 +48,11 @@ const pwm_cfg_t pwm_tab[]=
 {
     //            port  pin               timer  CH
     //for relay control
-//    ADD_PWM_ITEM(GPIOB, 7,APB1,TIM_OCMode_PWM1,4,2,3600,0,0,0),	//20k
+//    ADD_PWM_ITEM(GPIOB, 7,APB1,TIM_OCMode_PWM1,4,2,3600,0,0,0),    //20k
 //    ADD_PWM_ITEM(GPIOB, 6,APB1,TIM_OCMode_PWM1,4,1,3600,0,0,0),
-//    ADD_PWM_ITEM(GPIOB, 5,APB1,TIM_OCMode_PWM1,3,2,3600,0,1,GPIO_PartialRemap_TIM3),	//20k
+//    ADD_PWM_ITEM(GPIOB, 5,APB1,TIM_OCMode_PWM1,3,2,3600,0,1,GPIO_PartialRemap_TIM3),    //20k
 //    ADD_PWM_ITEM(GPIOB, 4,APB1,TIM_OCMode_PWM1,3,1,3600,0,1,GPIO_PartialRemap_TIM3),
-    ADD_PWM_ITEM(GPIOB, 9,APB1,TIM_OCMode_PWM1,4,4,3600,0,0,0),	//20k
+    ADD_PWM_ITEM(GPIOB, 9,APB1,TIM_OCMode_PWM1,4,4,3600,0,0,0),    //20k
     ADD_PWM_ITEM(GPIOB, 8,APB1,TIM_OCMode_PWM1,4,3,3600,0,0,0),        
 };
 
@@ -67,19 +67,19 @@ void bsp_pwm_init(void)
     GPIO_InitStructure.GPIO_Mode    = GPIO_Mode_AF_PP;//复用模式
     GPIO_InitStructure.GPIO_Speed   = GPIO_Speed_50MHz;//定义速度，最高是50MHz
     
-	TIM_TimeBaseStructure.TIM_CounterMode       = TIM_CounterMode_Up; //向上计数 
-	TIM_TimeBaseStructure.TIM_ClockDivision     = 0;//时钟分割值
-	TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;
+    TIM_TimeBaseStructure.TIM_CounterMode       = TIM_CounterMode_Up; //向上计数 
+    TIM_TimeBaseStructure.TIM_ClockDivision     = 0;//时钟分割值
+    TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;
     
     //输出模式配置
-	
-	TIM_OCInitStructure.TIM_OutputState     = TIM_OutputState_Enable;//使能输出比较状态
-	TIM_OCInitStructure.TIM_OutputNState    = TIM_OutputNState_Disable;//失能输出比较N状态
-	TIM_OCInitStructure.TIM_OCPolarity      = TIM_OCPolarity_High;//TIM输出比较极性高
-	TIM_OCInitStructure.TIM_OCIdleState     = TIM_OCIdleState_Reset;//当MOE=0时，设置TIM输出比较空闲状态
+    
+    TIM_OCInitStructure.TIM_OutputState     = TIM_OutputState_Enable;//使能输出比较状态
+    TIM_OCInitStructure.TIM_OutputNState    = TIM_OutputNState_Disable;//失能输出比较N状态
+    TIM_OCInitStructure.TIM_OCPolarity      = TIM_OCPolarity_High;//TIM输出比较极性高
+    TIM_OCInitStructure.TIM_OCIdleState     = TIM_OCIdleState_Reset;//当MOE=0时，设置TIM输出比较空闲状态
 
-	//special handle 
-	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);	//for PB4 pwm
+    //special handle 
+    GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);    //for PB4 pwm
 
     for(i=0;i<ARRY_ITEMS_NUM(pwm_tab);i++)
     {
@@ -118,8 +118,8 @@ int32_t bsp_pwm_write(uint8_t pwm_ch,uint32_t val)
          pwm_tab[pwm_ch].TIM_SetComparex(pwm_tab[pwm_ch].Timer,(uint16_t)val_in); 
          //DBG_I_LIMIT(1000,"bsp_pwm_write[%d]: %d  max:%d  se:%d",pwm_ch,val_in,pwm_tab[pwm_ch].max_cnt,val);
     }
-//	DBG_I();
-	return 0;
+//    DBG_I();
+    return 0;
 }
 
 #if 1
@@ -140,7 +140,7 @@ int32_t set_pwm(uint8_t argc, uint8_t *argv[])
     {
         DBG_W("warn the set_pwm param is error: eg:set_pwm ch val");
     }
-	return RET_OK;
+    return RET_OK;
 }
 
 REG_SHELL_CMD(set_pwm,0,set_pwm,"set_pwm", "eg:set_pwm ch val\r\n ");

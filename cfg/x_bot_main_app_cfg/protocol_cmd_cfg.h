@@ -87,13 +87,13 @@
     
 //control command set   
 #define CONTROL_CMD_SET                     0x02   
-    #define BLOOD_BAR_INFO                  0x01      	//include battery soc and blood percentage    
-	#define CTR_CMD_ID_COM_TYPE_CHECK		0x03		//get the com type
-    #define CTR_CMD_ID_JOYSTICK_DATA		0x04		//joystick data
+    #define BLOOD_BAR_INFO                  0x01          //include battery soc and blood percentage    
+    #define CTR_CMD_ID_COM_TYPE_CHECK        0x03        //get the com type
+    #define CTR_CMD_ID_JOYSTICK_DATA        0x04        //joystick data
     #define CTR_CMD_ID_CAR_INFO_SET         0x06
     #define CTR_CMD_ID_GET_REQ              0x07
-	#define CTR_CMD_ID_BULLET_ADDING    	0x0A
-	#define CTR_CMD_ID_MOTOR_REVERSE		0x0B		//battle field motor reverse 
+    #define CTR_CMD_ID_BULLET_ADDING        0x0A
+    #define CTR_CMD_ID_MOTOR_REVERSE        0x0B        //battle field motor reverse 
 //rc command set    
 #define SBUS_CMD_SET                        0x10
     #define SBUS_CHANNEL_DATA               0x00

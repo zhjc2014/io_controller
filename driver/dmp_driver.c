@@ -7,17 +7,17 @@
 
 #if ENABLE_DMP_DEV
 
-static int32_t drv_dmp_init	(void)
+static int32_t drv_dmp_init    (void)
 {
     return dmp_init(0);
 }
 
-static int32_t drv_dmp_write	(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_dmp_write    (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     return 0;
 }
 
-static int32_t drv_dmp_read	(uint8_t* p_dest, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_dmp_read    (uint8_t* p_dest, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     int result;
     ST_DMP_DATA *pdmpData = (ST_DMP_DATA *)p_dest;

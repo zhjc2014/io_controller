@@ -14,23 +14,23 @@ extern hal_obj_t    sg_sys_hal;
 int32_t  hal_app_write(uint32_t dev_handle,uint8_t* pbuf, uint32_t len, uint32_t offset,uint32_t* p_real_bytes)
 {
     if(dev_handle>MAX_DRV_NUM)                      {return -1;}
-	if( (P_DEV->dev_flag & DEV_READY) != DEV_READY) {return -1;}
+    if( (P_DEV->dev_flag & DEV_READY) != DEV_READY) {return -1;}
     return P_DEV->dev_write(pbuf,len,offset,p_real_bytes);
 }
 
 
 int32_t  hal_app_read(uint32_t dev_handle,uint8_t* pbuf, uint32_t len, uint32_t offset,uint32_t* p_real_bytes)
 {
-	if(dev_handle>MAX_DRV_NUM)                      {return -1;}
+    if(dev_handle>MAX_DRV_NUM)                      {return -1;}
     if( (P_DEV->dev_flag & DEV_READY) != DEV_READY) {return -1;}
     return P_DEV->dev_read(pbuf,len,offset,p_real_bytes);
 }
 
 int32_t  hal_app_ctrl(uint32_t dev_handle,uint32_t ctrl_cmd,uint8_t* pbuf,uint32_t len,uint32_t* p_real_bytes)
 {
-	if(dev_handle>MAX_DRV_NUM)                      {return -1;}
+    if(dev_handle>MAX_DRV_NUM)                      {return -1;}
     if( (P_DEV->dev_flag & DEV_READY) != DEV_READY) {return -1;}
-	return P_DEV->dev_ctrl(ctrl_cmd,pbuf,len,p_real_bytes);
+    return P_DEV->dev_ctrl(ctrl_cmd,pbuf,len,p_real_bytes);
 }
 
 
@@ -38,7 +38,7 @@ int32_t  hal_app_ctrl(uint32_t dev_handle,uint32_t ctrl_cmd,uint8_t* pbuf,uint32
 
 static int32_t w_dev(uint8_t argc, uint8_t *argv[])
 {
-	if(argc>=3)
+    if(argc>=3)
     {
         uint32_t dev_id = 0;
         uint32_t w_len = strlen((const char*)argv[2]);
@@ -54,7 +54,7 @@ static int32_t w_dev(uint8_t argc, uint8_t *argv[])
     {
         DBG_I("input param err! eg:w_dev 1 123 ");
     }
-	return RET_OK;
+    return RET_OK;
 }
 
 REG_SHELL_CMD_X(w_dev,0,w_dev,"w_dev", "w_dev 1 123 \r\n ");

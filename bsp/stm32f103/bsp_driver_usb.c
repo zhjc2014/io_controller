@@ -36,8 +36,8 @@ void USB_Interrupts_Config(void)
   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3;
   NVIC_Init(&NVIC_InitStructure);  
 #else
-	
-	NVIC_EnableIRQ(USB_LP_CAN1_RX0_IRQn);
+    
+    NVIC_EnableIRQ(USB_LP_CAN1_RX0_IRQn);
 
 #endif /* STM32F10X_CL */
 
@@ -63,9 +63,9 @@ void Set_USBClock(void)
 
 void usb_hid_hw_init(void)
 {
-	USB_Interrupts_Config();
-	Set_USBClock();
-	USB_Init();
+    USB_Interrupts_Config();
+    Set_USBClock();
+    USB_Init();
 }
 
 void bsp_usb_init(void)
@@ -73,48 +73,48 @@ void bsp_usb_init(void)
     usb_hid_hw_init();
 }
 
-int32_t bsp_usb_write	(uint8_t* pSrc,uint32_t len)
+int32_t bsp_usb_write    (uint8_t* pSrc,uint32_t len)
 {
     int32_t real_len = 0;
-	real_len = kfifo_push_in(&sg_usb_tx_fifo,pSrc,len);
-	return real_len;
+    real_len = kfifo_push_in(&sg_usb_tx_fifo,pSrc,len);
+    return real_len;
 }
 
-int32_t bsp_usb_read	(uint8_t* pDest,uint32_t len)
+int32_t bsp_usb_read    (uint8_t* pDest,uint32_t len)
 {
     int32_t real_len = 0;
-	real_len = kfifo_pull_out(&sg_usb_rx_fifo,pDest,len);
-	return real_len;
+    real_len = kfifo_pull_out(&sg_usb_rx_fifo,pDest,len);
+    return real_len;
 }
 
 
 int32_t usb_push_data_to_rx_fifo(uint8_t* pbuf,uint16_t len)
 {
-	int32_t real_len = 0;
-	real_len = kfifo_push_in(&sg_usb_rx_fifo,pbuf,len);
-	return real_len;
+    int32_t real_len = 0;
+    real_len = kfifo_push_in(&sg_usb_rx_fifo,pbuf,len);
+    return real_len;
 }
 
 int32_t usb_pull_data_from_tx_fifo(uint8_t* pbuf,uint16_t len)
 {
-	int32_t real_len = 0;
-	real_len = kfifo_pull_out(&sg_usb_tx_fifo,pbuf,len);
-	return real_len;
+    int32_t real_len = 0;
+    real_len = kfifo_pull_out(&sg_usb_tx_fifo,pbuf,len);
+    return real_len;
 }
 extern void usb_send_data(uint8_t *pbuf,uint8_t len);
 
 void usb_run_ontick(void)
 {
     uint8_t usb_send_buf[64]={0};
-	int32_t real_len = 0;
-	real_len = usb_pull_data_from_tx_fifo(&usb_send_buf[1],64-1);
-	usb_send_buf[0] = real_len;
-	if(real_len>0)
-	{
-		//show_buf(usb_send_buf,64);
-		usb_send_data(usb_send_buf,64);
-		//DBG_I("usb hid send:%d",real_len);
-	}
+    int32_t real_len = 0;
+    real_len = usb_pull_data_from_tx_fifo(&usb_send_buf[1],64-1);
+    usb_send_buf[0] = real_len;
+    if(real_len>0)
+    {
+        //show_buf(usb_send_buf,64);
+        usb_send_data(usb_send_buf,64);
+        //DBG_I("usb hid send:%d",real_len);
+    }
 }
 
 

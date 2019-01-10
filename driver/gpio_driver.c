@@ -6,14 +6,14 @@
 
 
 #if ENABLE_GPIO_DRV
-static int32_t drv_gpio_init		(void)
+static int32_t drv_gpio_init        (void)
 {
-	bsp_gpio_init();
-	return 0;
+    bsp_gpio_init();
+    return 0;
 }
 
 
-int32_t drv_gpio_write		(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p_real)
+int32_t drv_gpio_write        (uint8_t* pSrc,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
     uint32_t val = 0;
     if(len==sizeof(uint32_t))
@@ -24,7 +24,7 @@ int32_t drv_gpio_write		(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p
     return 0;
 }
 
-int32_t drv_gpio_read		(uint8_t* dest,uint32_t len	,uint32_t offset,uint32_t* p_real)
+int32_t drv_gpio_read        (uint8_t* dest,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
     uint32_t val = 0;
     if(len==sizeof(uint32_t))

@@ -4,12 +4,12 @@
 #include "debug.h"
 #include "x_frame.h"
 
-static uint16_t 	sbus_get_header_len		(uint8_t* pbuf);
-static uint16_t 	sbus_get_data_len			(uint8_t* pbuf);
-static uint8_t 	    sbus_check_header			(uint8_t* pbuf);
-static uint8_t 	    sbus_check_data			(uint8_t* pbuf);
-static uint16_t     sbus_pack_data			(uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info);
-static uint16_t     sbus_unpack_data			(uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info);
+static uint16_t     sbus_get_header_len        (uint8_t* pbuf);
+static uint16_t     sbus_get_data_len            (uint8_t* pbuf);
+static uint8_t         sbus_check_header            (uint8_t* pbuf);
+static uint8_t         sbus_check_data            (uint8_t* pbuf);
+static uint16_t     sbus_pack_data            (uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info);
+static uint16_t     sbus_unpack_data            (uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info);
 
 //0F 00 04 20 00 01 08 40 00 02 10 80 00 04 20 00 01 08 40 00 02 10 80 00 00
 
@@ -25,9 +25,9 @@ static uint16_t     sbus_unpack_data			(uint8_t* p_raw_buf, hal_frame_info_t* p_
 #define SBUS_CH_DATA (22)
 #pragma pack(1)
 typedef struct {
-    uint8_t 	sof;
+    uint8_t     sof;
     /*ctrl 1-------------*/
-    uint8_t 	ch_data[SBUS_CH_DATA];
+    uint8_t     ch_data[SBUS_CH_DATA];
     uint8_t     flag;
 //    uint16_t    ch1:11;
 //    uint16_t    ch2:11;
@@ -50,11 +50,11 @@ typedef struct {
     uint8_t     chk;
 } sbus_data_struct_t;
 #pragma pack()
-#define sbus_HEAD_SOF		(0x0f)
-#define sbus_DATA_CHK		(0x00)
+#define sbus_HEAD_SOF        (0x0f)
+#define sbus_DATA_CHK        (0x00)
 
-#define sbus_HEAD_HEN		    (1)
-#define sbus_EXTPACK_LEN	(sizeof(sbus_data_struct_t))
+#define sbus_HEAD_HEN            (1)
+#define sbus_EXTPACK_LEN    (sizeof(sbus_data_struct_t))
 
 
 static uint16_t sbus_get_header_len(uint8_t* pbuf)
@@ -88,22 +88,22 @@ static uint8_t sbus_check_data(uint8_t* pbuf)
     return 0;
 }
 
-static uint16_t  sbus_pack_data	(uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info)
+static uint16_t  sbus_pack_data    (uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info)
 {
     return 0;
 }
 
 
-static uint16_t  sbus_unpack_data	(uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info)
+static uint16_t  sbus_unpack_data    (uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info)
 {
     sbus_data_struct_t* p_sbus_pack = (sbus_data_struct_t*)p_raw_buf;
-    p_frame_info->enc_type			= 0;
-    p_frame_info->check_type		= 0;
-    p_frame_info->cmd_id			= SBUS_CHANNEL_DATA;
-    p_frame_info->data_len			= SBUS_CH_DATA + 1;
+    p_frame_info->enc_type            = 0;
+    p_frame_info->check_type        = 0;
+    p_frame_info->cmd_id            = SBUS_CHANNEL_DATA;
+    p_frame_info->data_len            = SBUS_CH_DATA + 1;
 
-    p_frame_info->cmd_func			= SBUS_CMD_SET;
-    p_frame_info->pdata				= (uint8_t*)(&p_sbus_pack->ch_data);
+    p_frame_info->cmd_func            = SBUS_CMD_SET;
+    p_frame_info->pdata                = (uint8_t*)(&p_sbus_pack->ch_data);
 
     return 1;
 }

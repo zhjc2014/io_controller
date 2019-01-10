@@ -29,7 +29,7 @@ int32_t kfifo_init(char* name,kfifo_t* pfifo,uint8_t* pbuf,uint32_t size)
 
 void kfifo_reset(kfifo_t* pfifo)
 {
-	pfifo->write_index  = 0;
+    pfifo->write_index  = 0;
     pfifo->read_index   = 0;
 }
 
@@ -106,7 +106,7 @@ static uint32_t kfifo_have_len(kfifo_t* pfifo)
 
 uint32_t kfifo_rest_len(kfifo_t* pfifo)
 {
-	return pfifo->fifo_size - kfifo_have_len(pfifo);
+    return pfifo->fifo_size - kfifo_have_len(pfifo);
 }
 
 uint32_t kfifo_get_w_index(kfifo_t* pfifo)

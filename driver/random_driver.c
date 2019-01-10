@@ -13,18 +13,18 @@ typedef union{
 }random_seed_u;
 static random_seed_u random_seed = {0};
 
-static int32_t drv_random_init		(void)
+static int32_t drv_random_init        (void)
 {
     bsp_adc_init();
-	return 0;
+    return 0;
 }
 
-static int32_t drv_random_read(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p_real)
+static int32_t drv_random_read(uint8_t* pSrc,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
     uint32_t random_num;
     srand(random_seed.random);
     random_num = rand();
-	if (sizeof(random_seed) == len){
+    if (sizeof(random_seed) == len){
         *(uint32_t*)pSrc = random_num;
     }
     return 0;

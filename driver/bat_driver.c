@@ -30,11 +30,11 @@
 //    static const double refPos = 3300.0; //mV
 //    static const double refNeg = 0.0;
 //    static const int maxAdc = 4095;
-//    static const double r1 = 30.0;	//korm
-//    static const double r2 = 10.0;	//korm
+//    static const double r1 = 30.0;    //korm
+//    static const double r2 = 10.0;    //korm
 //    uint16_t adc_value;
 //    double adc_voltage;
-////	hal_app_read(ADC_DEV, (uint8_t*)&adc_value, sizeof(uint16_t), 0);
+////    hal_app_read(ADC_DEV, (uint8_t*)&adc_value, sizeof(uint16_t), 0);
 //    adc_value = bsp_adc_read  (0);
 //    adc_voltage = adc_value * (refPos - refNeg) / maxAdc;
 //    *raw_voltage = adc_voltage * (r1 + r2) / r2;
@@ -61,7 +61,7 @@
 //    DBG_I("bat_ratio :%f", bat_ratio);
 //    if (bat_ratio < max_batv_ratio && bat_ratio > min_batv_ratio ) {
 //        batteryVoltageK = bat_ratio;
-////		return paramWriteSingle(g_save_param_info, (uint32_t)&g_base_bot_data.batVolK);
+////        return paramWriteSingle(g_save_param_info, (uint32_t)&g_base_bot_data.batVolK);
 //        return 0;
 //    } else {
 //        return -1;
@@ -117,13 +117,13 @@
 //}
 //REG_TASK(ID_TASK, 500, cal_electricitypercentage);
 
-//static int32_t drv_bat_init		(void)
+//static int32_t drv_bat_init        (void)
 //{
 //    bsp_adc_init();
 //    return 0;
 //}
 
-//static int32_t drv_bat_write	(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+//static int32_t drv_bat_write    (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 //{
 //    uint16_t voltage;
 //    voltage = *(uint16_t*)pSrc;
@@ -133,7 +133,7 @@
 //    return batv_write(voltage);
 //}
 
-//static int32_t drv_bat_read	(uint8_t* p_dest, uint32_t len	, uint32_t offset, uint32_t* p_real)
+//static int32_t drv_bat_read    (uint8_t* p_dest, uint32_t len    , uint32_t offset, uint32_t* p_real)
 //{
 //    *p_dest = get_electricitypercentage();
 //    if (p_real){

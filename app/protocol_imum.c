@@ -4,12 +4,12 @@
 //#include "debug.h"
 //#include "x_frame.h"
 
-//static uint16_t 	imum_get_header_len		    (uint8_t* pbuf);
-//static uint16_t 	imum_get_data_len		    (uint8_t* pbuf);
-//static uint8_t 	    imum_check_header		    (uint8_t* pbuf);
-//static uint8_t 	    imum_check_data			    (uint8_t* pbuf);
-//static uint16_t     imum_pack_data			    (uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info);
-//static uint16_t     imum_unpack_data			(uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info);
+//static uint16_t     imum_get_header_len            (uint8_t* pbuf);
+//static uint16_t     imum_get_data_len            (uint8_t* pbuf);
+//static uint8_t         imum_check_header            (uint8_t* pbuf);
+//static uint8_t         imum_check_data                (uint8_t* pbuf);
+//static uint16_t     imum_pack_data                (uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info);
+//static uint16_t     imum_unpack_data            (uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info);
 
 //ADD_PROTOCOL(   PROTOCOL_IMUM,
 //                imum_get_header_len,
@@ -23,18 +23,18 @@
 
 //#pragma pack(1)
 //typedef struct {
-//    uint8_t 	sof;                 //1 byte
-//    uint8_t 	cmdid;               //1 byte
-//    uint8_t 	pdata[8];            //1 byte
+//    uint8_t     sof;                 //1 byte
+//    uint8_t     cmdid;               //1 byte
+//    uint8_t     pdata[8];            //1 byte
 //    uint8_t     chk;                 //data check
 //} imum_data_struct_t;
 //#pragma pack()
 
 
-//#define IMUM_HEAD_SOF		        (0x55)
-//#define IMUM_VERSION		        (PROTOCOL_IMUM)
-//#define IMUM_HEAD_HEN		        (1)
-//#define IMUM_EXTPACK_LEN	        (11)
+//#define IMUM_HEAD_SOF                (0x55)
+//#define IMUM_VERSION                (PROTOCOL_IMUM)
+//#define IMUM_HEAD_HEN                (1)
+//#define IMUM_EXTPACK_LEN            (11)
 //#define IMUM_CHECK_TYPE             CHECK_TYPE_SUM
 
 //static uint16_t imum_get_header_len(uint8_t* pbuf)
@@ -74,7 +74,7 @@
 //    return 0;
 //}
 
-//static uint16_t  imum_pack_data	(uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info)
+//static uint16_t  imum_pack_data    (uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info)
 //{
 //    uint32_t chk_result = 0;
 //    uint8_t * pcheck_buf = NULL;
@@ -84,7 +84,7 @@
 //    p_imum_pack->sof = IMUM_HEAD_SOF;
 
 //    //------------------data
-//    p_imum_pack->cmdid				= p_frame_info->cmd_id;
+//    p_imum_pack->cmdid                = p_frame_info->cmd_id;
 //    memcpy(p_imum_pack->pdata, p_frame_info->pdata,  p_frame_info->data_len);
 
 //    //----------------check
@@ -98,13 +98,13 @@
 //}
 
 
-//static uint16_t  imum_unpack_data	(uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info)
+//static uint16_t  imum_unpack_data    (uint8_t* p_raw_buf, hal_frame_info_t* p_frame_info)
 //{
 //    imum_data_struct_t* p_IMU_pack = (imum_data_struct_t*)p_raw_buf;
 //    p_frame_info->cmd_func          =   IMUM_CMD_SET;
-//    p_frame_info->cmd_id			=   p_IMU_pack->cmdid;
-//    p_frame_info->data_len			=   IMUM_EXTPACK_LEN - 3;
-//    p_frame_info->pdata				=   p_IMU_pack->pdata;
+//    p_frame_info->cmd_id            =   p_IMU_pack->cmdid;
+//    p_frame_info->data_len            =   IMUM_EXTPACK_LEN - 3;
+//    p_frame_info->pdata                =   p_IMU_pack->pdata;
 //    return 1;
 //}
 

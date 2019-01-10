@@ -5,22 +5,22 @@
 #include "bsp_flash.h"
 
 #if ENABLE_FALSH_DRV
-static int32_t drv_flash_init		(void)
+static int32_t drv_flash_init        (void)
 {
-	return 0;
+    return 0;
 }
 
-int32_t drv_flash_write		(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p_real)
+int32_t drv_flash_write        (uint8_t* pSrc,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
     uint32_t write_len = 0;
-	write_len = bsp_flash_write(offset,pSrc,len);
+    write_len = bsp_flash_write(offset,pSrc,len);
     if(p_real!=NULL) {*p_real = write_len; }
     return 0;
 }
-int32_t drv_flash_read		(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p_real)
+int32_t drv_flash_read        (uint8_t* pSrc,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
-	uint32_t read_len = 0;
-	read_len = bsp_flash_read(offset,pSrc,len);
+    uint32_t read_len = 0;
+    read_len = bsp_flash_read(offset,pSrc,len);
     if(p_real!=NULL) {*p_real = read_len; }
     return 0;
 }

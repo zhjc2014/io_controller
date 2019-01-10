@@ -9,7 +9,7 @@
 
 static link_route_t sg_route_tab[] = {
     //               enable                 distination addr            link id
-    ADD_ADDR_ROUTE(EN_ROUTE,			    PC_ADDR,			        PC_LINK_ID,				        NULL		),
+    ADD_ADDR_ROUTE(EN_ROUTE,                PC_ADDR,                    PC_LINK_ID,                        NULL        ),
 };
 
 
@@ -18,10 +18,10 @@ int32_t pc_link_route_check(hal_frame_info_t* p_frame, uint8_t* p_tag_link_id)
     if(p_frame->dest != HOST_ADDR) {
         uint16_t i = 0;
 
-		if (p_frame->src == HOST_ADDR){
-			return IS_LOOP_PACK;
-		}
-	
+        if (p_frame->src == HOST_ADDR){
+            return IS_LOOP_PACK;
+        }
+    
         for(i = 0; i < ARRY_ITEMS_NUM(sg_route_tab); i++) {
             switch(sg_route_tab[i].route_type) {
             case ROUTE_ADDR:

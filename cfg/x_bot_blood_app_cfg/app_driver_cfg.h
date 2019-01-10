@@ -8,10 +8,10 @@ enum
     DRV_UART1,
     DRV_UART2,
     DRV_UART3,
-	DRV_WL_UART,
+    DRV_WL_UART,
     DRV_USB_VCP,
     DRV_USB_HID,
-	DRV_RTT,
+    DRV_RTT,
     DRV_FALSH,
     DRV_LED,
     DRV_SYS,
@@ -19,7 +19,7 @@ enum
     DRV_ADC,
     DRV_GPIO,
     DRV_PWM,
-	DRV_BLOOD,
+    DRV_BLOOD,
     DRV_MPU6500,
     DRV_MPU6500_DMP
 };

@@ -6,10 +6,10 @@
 
 
 #if ENABLE_KEY_DRV
-static int32_t drv_key_init		(void)
+static int32_t drv_key_init        (void)
 {
     bsp_key_init();
-	return 0;
+    return 0;
 }
       
 REG_DEV(    

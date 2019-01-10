@@ -176,8 +176,8 @@ void delay_ms(uint32_t ms)
 
 /**
   * @brief This function read 1byte data from the indicated register of MPU6500
-	*	@param rAddr: the indicated address of register
-	* @retval read value (uint8_t)
+    *    @param rAddr: the indicated address of register
+    * @retval read value (uint8_t)
   */
 static uint8_t MPU6500ReadRegister(int mpuNum, uint8_t rAddr)
 {
@@ -191,10 +191,10 @@ static uint8_t MPU6500ReadRegister(int mpuNum, uint8_t rAddr)
 
 /**
   * @brief This function read several datas from the indicated registers of MPU6500
-	*	@param rAddr: the indicated beginning address of registers
-	* @param number: the number of register which will be read
-	* @param *rBuf: the store buffer pointer
-	* @retval None
+    *    @param rAddr: the indicated beginning address of registers
+    * @param number: the number of register which will be read
+    * @param *rBuf: the store buffer pointer
+    * @retval None
   */
 static void MPU6500ReadRegisters(int mpuNum, uint8_t rAddr, uint8_t number, uint8_t *rBuf)
 {
@@ -212,9 +212,9 @@ static void MPU6500ReadRegisters(int mpuNum, uint8_t rAddr, uint8_t number, uint
 
 /**
   * @brief This function does write a uint8_t value into the indicated register
-	*	@param wAddr: the indicated address of register
-	* @param wData: the uint8_t data which will be wrote
-	* @retval None
+    *    @param wAddr: the indicated address of register
+    * @param wData: the uint8_t data which will be wrote
+    * @retval None
   */
 static void MPU6500WriteRegister(int mpuNum, uint8_t wAddr, uint8_t wData)
 {
@@ -228,10 +228,10 @@ static void MPU6500WriteRegister(int mpuNum, uint8_t wAddr, uint8_t wData)
 
 /**
   * @brief This function does read accel gyro temperature raw datas from MPU6500
-	*	@param *accelBuf: accelerator datas buffer
-	* @param *gyroBuf: gyroscope datas buffer
-	* @param *tempBuf: temperature data buffer
-	* @retval None
+    *    @param *accelBuf: accelerator datas buffer
+    * @param *gyroBuf: gyroscope datas buffer
+    * @param *tempBuf: temperature data buffer
+    * @retval None
   */
 static void MPU6500ReadRawData(int mpuNum, Vector3i *accelBuf_hor, Vector3i *gyroBuf_hor, int16_t *tempBuf)
 {
@@ -275,8 +275,8 @@ int whoamI_check(uint8_t mpuNum)
     uint8_t readValue;
     MPU6500WriteRegister(mpuNum, MPU6500_PWR_MGMT_1, MPU6500_PWRMGMT_PLL_X_CLK);
     delay_ms(10);
-    readValue = MPU6500ReadRegister(mpuNum, MPU6500_WHO_AM_I);			//reset value is 0x70
-    if (readValue != 0x70) {											//do a check
+    readValue = MPU6500ReadRegister(mpuNum, MPU6500_WHO_AM_I);            //reset value is 0x70
+    if (readValue != 0x70) {                                            //do a check
         DBG_I("MPU6500 %i who am i error!!", mpuNum + 1);
         return -1;
     }
@@ -288,8 +288,8 @@ int whoamI_check(uint8_t mpuNum)
 
 /**
   * @brief This function does initialize sensor MPU6500
-	* @param None
-	* @retval None
+    * @param None
+    * @retval None
   */
 
 int8_t MPU6500Init(void)
@@ -312,8 +312,8 @@ int8_t MPU6500Init(void)
 //            DBG_I("MPU6500 %i reset pm1 error!! 0x%02X", i + 1, readValue);
 //            continue;
 //        }
-//        readValue = MPU6500ReadRegister(i, MPU6500_WHO_AM_I);			//reset value is 0x70
-//        if (readValue != 0x70) {											//do a check
+//        readValue = MPU6500ReadRegister(i, MPU6500_WHO_AM_I);            //reset value is 0x70
+//        if (readValue != 0x70) {                                            //do a check
 //            DBG_I("MPU6500 %i read WHO AM I error!! 0x%02X", i + 1, readValue);
 //            continue;
 //        }
@@ -385,8 +385,8 @@ int8_t MPU6500Init(void)
         MPU6500WriteRegister(i, MPU6500_PWR_MGMT_1, MPU6500_PWRMGMT_PLL_X_CLK);
         delay_ms(10);
 
-        readValue = MPU6500ReadRegister(i, MPU6500_WHO_AM_I);			    //reset value is 0x70
-        if (readValue != 0x70) {											//do a check
+        readValue = MPU6500ReadRegister(i, MPU6500_WHO_AM_I);                //reset value is 0x70
+        if (readValue != 0x70) {                                            //do a check
             /*id error*/
             DBG_I("MPU6500 %i Init error!!", i + 1);
             return -1;
@@ -438,7 +438,7 @@ int8_t MPU6500Init(void)
         }
         
         writeValue = MPU6500_ENABLE_AG;
-        MPU6500WriteRegister(i, MPU6500_PWR_MGMT_2, writeValue);		    //enable accel gyro and temperature
+        MPU6500WriteRegister(i, MPU6500_PWR_MGMT_2, writeValue);            //enable accel gyro and temperature
         delay_ms(10);
         readValue = MPU6500ReadRegister(i, MPU6500_PWR_MGMT_2);
         if (readValue != writeValue){

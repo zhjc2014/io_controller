@@ -6,20 +6,20 @@
 
 enum
 {
-	eu_int8 	= 0x10,
-	eu_uint8 	= 0x01,
-	eu_int16 	= 0x12,
-	eu_uint16 	= 0x03,
-	eu_int32 	= 0x14,
-	eu_uint32 	= 0x05,
-	eu_fp32 	= 0x06,
+    eu_int8     = 0x10,
+    eu_uint8     = 0x01,
+    eu_int16     = 0x12,
+    eu_uint16     = 0x03,
+    eu_int32     = 0x14,
+    eu_uint32     = 0x05,
+    eu_fp32     = 0x06,
 };
 
 
 enum
 {
-	attr_r		= 1,
-	attr_w		= 2,
+    attr_r        = 1,
+    attr_w        = 2,
 };
 
 #define PARM_RW    (attr_r|attr_w)
@@ -48,14 +48,14 @@ typedef union
 typedef void (*pf_save_func)(uint32_t addr,uint32_t len);
 typedef struct
 {
-	const char*	name;
-	uint8_t			type;
-	uint8_t 		attr;
-	uint8_t  		size;
-	float			def_val;
-	float			min_val;
-	float			max_val;
-	void*		    p_param_val_addr;
+    const char*    name;
+    uint8_t            type;
+    uint8_t         attr;
+    uint8_t          size;
+    float            def_val;
+    float            min_val;
+    float            max_val;
+    void*            p_param_val_addr;
 }param_item_cfg_t;
 
 //之所以加一层是因为param_item_cfg_t 基本是不变得内存，节省内存从36bytes->16
@@ -81,13 +81,13 @@ typedef struct
 {
     uint8_t         status;
     uint32_t        item_num;
-	uint8_t			type;
-	uint8_t 		attr;
-	uint8_t		    size;
-	float			cur_val;
-	float			def_val;
-	float			min_val;
-	float			max_val;
+    uint8_t            type;
+    uint8_t         attr;
+    uint8_t            size;
+    float            cur_val;
+    float            def_val;
+    float            min_val;
+    float            max_val;
     uint8_t         name[1];   //因为字符串是变长的
 }protocol_param_item_t;
 
@@ -117,13 +117,13 @@ typedef struct
 typedef struct
 {
     uint32_t        hash_value;//crc16+sum16
-	uint8_t			type;
-	uint8_t 		attr;
-	uint16_t		size;
-	float			cur_val;
-	float			def_val;
-	float			min_val;
-	float			max_val;
+    uint8_t            type;
+    uint8_t         attr;
+    uint16_t        size;
+    float            cur_val;
+    float            def_val;
+    float            min_val;
+    float            max_val;
 }save_param_item_t;
 
 

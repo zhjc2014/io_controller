@@ -18,7 +18,7 @@ extern uint32_t rf_init_flag;
 
 volatile static int tx_flag = 0;
 
-static int32_t drv_rf24l01_init		(void)
+static int32_t drv_rf24l01_init        (void)
 {
     static int init = 0;
     if (!init){
@@ -36,7 +36,7 @@ static int32_t drv_rf24l01_init		(void)
 
 #if ENABLE_RF24L01_0_DRV
 
-static int32_t drv_rf24l01_0_write		(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_rf24l01_0_write        (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     int32_t result = 0;
     tx_flag = 1;
@@ -63,7 +63,7 @@ static int32_t drv_rf24l01_0_write		(uint8_t* pSrc, uint32_t len	, uint32_t offs
     tx_flag = 0;
     return result;
 }
-static int32_t drv_rf24l01_0_read		(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_rf24l01_0_read        (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     uint32_t recLen;
     recLen = get_nrf24l01_data(pSrc, 0);
@@ -72,7 +72,7 @@ static int32_t drv_rf24l01_0_read		(uint8_t* pSrc, uint32_t len	, uint32_t offse
     }
     return 0;
 }
-static int32_t drv_rf24l01_0_ctrl		(uint32_t ctrl_cmd, uint8_t* pDest, uint32_t len, uint32_t* p_real)
+static int32_t drv_rf24l01_0_ctrl        (uint32_t ctrl_cmd, uint8_t* pDest, uint32_t len, uint32_t* p_real)
 {
     if (SET_NRF_FREQ == ctrl_cmd){
         uint8_t channel;
@@ -105,7 +105,7 @@ REG_DEV(
 
 #if ENABLE_RF24L01_1_DRV
 
-static int32_t drv_rf24l01_1_write		(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_rf24l01_1_write        (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     int32_t result = 0;
     tx_flag = 1;
@@ -132,7 +132,7 @@ static int32_t drv_rf24l01_1_write		(uint8_t* pSrc, uint32_t len	, uint32_t offs
     tx_flag = 0;
     return result;
 }
-static int32_t drv_rf24l01_1_read		(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_rf24l01_1_read        (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     uint32_t recLen;
     recLen = get_nrf24l01_data(pSrc, 1);
@@ -141,7 +141,7 @@ static int32_t drv_rf24l01_1_read		(uint8_t* pSrc, uint32_t len	, uint32_t offse
     }
     return 0;
 }
-static int32_t drv_rf24l01_1_ctrl		(uint32_t ctrl_cmd, uint8_t* pDest, uint32_t len, uint32_t* p_real)
+static int32_t drv_rf24l01_1_ctrl        (uint32_t ctrl_cmd, uint8_t* pDest, uint32_t len, uint32_t* p_real)
 {
     return 0;
 }
@@ -161,7 +161,7 @@ REG_DEV(
 
 #if ENABLE_RF24L01_2_DRV
 
-static int32_t drv_rf24l01_2_write		(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_rf24l01_2_write        (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     int32_t result = 0;
     tx_flag = 1;
@@ -188,7 +188,7 @@ static int32_t drv_rf24l01_2_write		(uint8_t* pSrc, uint32_t len	, uint32_t offs
     tx_flag = 0;
     return result;
 }
-static int32_t drv_rf24l01_2_read		(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_rf24l01_2_read        (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     uint32_t recLen;
     recLen = get_nrf24l01_data(pSrc, 2);
@@ -197,7 +197,7 @@ static int32_t drv_rf24l01_2_read		(uint8_t* pSrc, uint32_t len	, uint32_t offse
     }
     return 0;
 }
-static int32_t drv_rf24l01_2_ctrl		(uint32_t ctrl_cmd, uint8_t* pDest, uint32_t len, uint32_t* p_real)
+static int32_t drv_rf24l01_2_ctrl        (uint32_t ctrl_cmd, uint8_t* pDest, uint32_t len, uint32_t* p_real)
 {
     return 0;
 }
@@ -217,7 +217,7 @@ REG_DEV(
 
 #if ENABLE_RF24L01_3_DRV
 
-static int32_t drv_rf24l01_3_write		(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_rf24l01_3_write        (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     int32_t result = 0;
     tx_flag = 1;
@@ -244,7 +244,7 @@ static int32_t drv_rf24l01_3_write		(uint8_t* pSrc, uint32_t len	, uint32_t offs
     tx_flag = 0;
     return result;
 }
-static int32_t drv_rf24l01_3_read		(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_rf24l01_3_read        (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     uint32_t recLen;
     recLen = get_nrf24l01_data(pSrc, 3);
@@ -253,7 +253,7 @@ static int32_t drv_rf24l01_3_read		(uint8_t* pSrc, uint32_t len	, uint32_t offse
     }
     return 0;
 }
-static int32_t drv_rf24l01_3_ctrl		(uint32_t ctrl_cmd, uint8_t* pDest, uint32_t len, uint32_t* p_real)
+static int32_t drv_rf24l01_3_ctrl        (uint32_t ctrl_cmd, uint8_t* pDest, uint32_t len, uint32_t* p_real)
 {
     return 0;
 }
@@ -272,7 +272,7 @@ REG_DEV(
 
 #if ENABLE_RF24L01_4_DRV
 
-static int32_t drv_rf24l01_4_write		(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_rf24l01_4_write        (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     int32_t result = 0;
     tx_flag = 1;
@@ -299,7 +299,7 @@ static int32_t drv_rf24l01_4_write		(uint8_t* pSrc, uint32_t len	, uint32_t offs
     tx_flag = 0;
     return result;
 }
-static int32_t drv_rf24l01_4_read		(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_rf24l01_4_read        (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     uint32_t recLen;
     recLen = get_nrf24l01_data(pSrc, 4);
@@ -308,7 +308,7 @@ static int32_t drv_rf24l01_4_read		(uint8_t* pSrc, uint32_t len	, uint32_t offse
     }
     return 0;
 }
-static int32_t drv_rf24l01_4_ctrl		(uint32_t ctrl_cmd, uint8_t* pDest, uint32_t len, uint32_t* p_real)
+static int32_t drv_rf24l01_4_ctrl        (uint32_t ctrl_cmd, uint8_t* pDest, uint32_t len, uint32_t* p_real)
 {
     return 0;
 }
@@ -327,7 +327,7 @@ REG_DEV(
 
 #if ENABLE_RF24L01_5_DRV
 
-static int32_t drv_rf24l01_5_write		(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_rf24l01_5_write        (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     int32_t result = 0;
     tx_flag = 1;
@@ -354,7 +354,7 @@ static int32_t drv_rf24l01_5_write		(uint8_t* pSrc, uint32_t len	, uint32_t offs
     tx_flag = 0;
     return result;
 }
-static int32_t drv_rf24l01_5_read		(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+static int32_t drv_rf24l01_5_read        (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     uint32_t recLen;
     recLen = get_nrf24l01_data(pSrc, 5);
@@ -363,7 +363,7 @@ static int32_t drv_rf24l01_5_read		(uint8_t* pSrc, uint32_t len	, uint32_t offse
     }
     return 0;
 }
-static int32_t drv_rf24l01_5_ctrl		(uint32_t ctrl_cmd, uint8_t* pDest, uint32_t len, uint32_t* p_real)
+static int32_t drv_rf24l01_5_ctrl        (uint32_t ctrl_cmd, uint8_t* pDest, uint32_t len, uint32_t* p_real)
 {
     return 0;
 }
@@ -383,13 +383,13 @@ REG_DEV(
 static uint32_t irq_counter = 0;
 static void irq_check(void)
 {
-	irq_counter++;
-	if (irq_counter > 300){	//no irq for 3 second
-		RF24L01_Init( );	//reinit the rf24l01 module
-		rf_init_flag = 0;
-		irq_counter = 0;
-//		DBG_I("rf_reinit");
-	}
+    irq_counter++;
+    if (irq_counter > 300){    //no irq for 3 second
+        RF24L01_Init( );    //reinit the rf24l01 module
+        rf_init_flag = 0;
+        irq_counter = 0;
+//        DBG_I("rf_reinit");
+    }
 }
 REG_TASK(ID_TASK, 10, irq_check);
 
@@ -397,7 +397,7 @@ REG_TASK(ID_TASK, 10, irq_check);
 void EXTI1_IRQHandler(void)
 {
     if (EXTI_GetITStatus(EXTI_Line1) != RESET) {
-		irq_counter = 0;	//clear the counter
+        irq_counter = 0;    //clear the counter
         if (!tx_flag){
             #if EN_ACK_WAIT
 //            drv_delay_ms(1);

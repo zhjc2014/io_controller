@@ -6,12 +6,12 @@
 
 
 #if ENABLE_PWM_DRV
-static int32_t drv_pwm_init		(void)
+static int32_t drv_pwm_init        (void)
 {
-	bsp_pwm_init();
-	return 0;
+    bsp_pwm_init();
+    return 0;
 }
-int32_t drv_pwm_write		(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p_real)
+int32_t drv_pwm_write        (uint8_t* pSrc,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
     int16_t val = 0;
     if(len == sizeof(val))

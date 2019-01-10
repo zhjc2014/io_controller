@@ -45,11 +45,11 @@ int32_t protocol_send_by_id(hal_frame_info_t* p_frame_info)
     p_frame_info->seq  = p_link->send_seq++;
     pack_len = p_protocol->pack_data(send_buf, p_frame_info);
     ret = hal_app_write(p_link->write_dev, send_buf, pack_len, 0, NULL);
-	
-//	if (p_frame_info->src == PC_ADDR && p_frame_info->dest >= 50 && p_frame_info->dest <= 55){
-//		DBG_I("from pc to car %d:", p_frame_info->dest - 50);
-//		show_buf(send_buf, pack_len);
-//	}
+    
+//    if (p_frame_info->src == PC_ADDR && p_frame_info->dest >= 50 && p_frame_info->dest <= 55){
+//        DBG_I("from pc to car %d:", p_frame_info->dest - 50);
+//        show_buf(send_buf, pack_len);
+//    }
 end:
     lock = 0;
     return ret;
@@ -145,9 +145,9 @@ static void run_unpack(link_hal_item* p_link)
     }
     lock = 1;
 
-    lb_move(&p_link->line_buf_obj, p_link->line_buf_obj.r_index);	//move the not read data left for length(param2)
-    lb_rest_len = lb_get_rest_len(&p_link->line_buf_obj);			//get the idle space 
-    read_len = (lb_rest_len < MAX_RECV_PACK_LEN) ? lb_rest_len : MAX_RECV_PACK_LEN;	//the length want to read
+    lb_move(&p_link->line_buf_obj, p_link->line_buf_obj.r_index);    //move the not read data left for length(param2)
+    lb_rest_len = lb_get_rest_len(&p_link->line_buf_obj);            //get the idle space 
+    read_len = (lb_rest_len < MAX_RECV_PACK_LEN) ? lb_rest_len : MAX_RECV_PACK_LEN;    //the length want to read
 
     if(read_len > 0) {
         ret = hal_app_read(p_link->read_dev, read_buf, read_len, 0, &read_len);//the bottom interface is ringbuffer
@@ -156,16 +156,16 @@ static void run_unpack(link_hal_item* p_link)
     if( (ret >= 0) && (read_len > 0) ){
         lb_push(&p_link->line_buf_obj, read_buf, read_len);
 
-		//for debug
-//		if (p_link->link_id >= RF_LINK_0_ID && p_link->link_id <= RF_LINK_5_ID){
-//			DBG_I("car%d data:", p_link->link_id - RF_LINK_0_ID);
-//			show_buf(read_buf, read_len);
-//		}
+        //for debug
+//        if (p_link->link_id >= RF_LINK_0_ID && p_link->link_id <= RF_LINK_5_ID){
+//            DBG_I("car%d data:", p_link->link_id - RF_LINK_0_ID);
+//            show_buf(read_buf, read_len);
+//        }
     }
 
     lock = 0;
-	
-	//for debug
+    
+    //for debug
     do {
         lb_have_len = lb_get_data_len(&p_link->line_buf_obj);
         switch(p_link->unpack_step) {
@@ -203,17 +203,17 @@ static void run_unpack(link_hal_item* p_link)
                         if(pack_type == IS_ROUTE_PACK) {
                             frame_info.link_id = tag_link_id;
                             protocol_send_by_id(&frame_info);
-							//data from car
-							if (frame_info.src >= CAR0_ADDR && frame_info.src <= CAR4_ADDR){
-								nrf_lost_cnt = 0;
-							}
-							
+                            //data from car
+                            if (frame_info.src >= CAR0_ADDR && frame_info.src <= CAR4_ADDR){
+                                nrf_lost_cnt = 0;
+                            }
+                            
                         }else if (pack_type == IS_HOST_PACK){
                             //查找并且调用响应函数
                             find_and_exec_action(&frame_info);
                         }else if (pack_type == IS_LOOP_PACK){
-							DBG_I("loop package, tx rx is shorted?!");
-						}else{
+                            DBG_I("loop package, tx rx is shorted?!");
+                        }else{
                             DBG_I("unknown package");
                         }
                     } else {
@@ -366,8 +366,8 @@ void  protocol_init(void)
     /*5:初始化链路*/
     for(i = 0; i < MAX_LINK_NUM; i++) {
         if(sg_link_tab[i] != NULL) {
-            sg_link_tab[i]->send_seq 		= 0;
-            sg_link_tab[i]->recv_seq 		= 0;
+            sg_link_tab[i]->send_seq         = 0;
+            sg_link_tab[i]->recv_seq         = 0;
             sg_link_tab[i]->unpack_step     = UNPACK_HEAD;
         }
     }
@@ -446,8 +446,8 @@ static const uint16_t crc_ibm_table[256] = {
 
 static uint16_t crc_ibm_byte(uint16_t crc, const uint8_t c)
 {
-	const unsigned char lut = (crc ^ c) & 0xFF;
-	return (crc >> 8) ^ crc_ibm_table[lut];
+    const unsigned char lut = (crc ^ c) & 0xFF;
+    return (crc >> 8) ^ crc_ibm_table[lut];
 }
 
 /**
@@ -458,10 +458,10 @@ static uint16_t crc_ibm_byte(uint16_t crc, const uint8_t c)
  */
 uint16_t crc_ibm(uint8_t const *buffer, uint16_t len)
 {
-	uint16_t crc = 0x0000;
-	while (len--)
-		crc = crc_ibm_byte(crc, *buffer++);
-	return crc;
+    uint16_t crc = 0x0000;
+    while (len--)
+        crc = crc_ibm_byte(crc, *buffer++);
+    return crc;
 }
 ///////////////for crc16 check end////////////////////
 

@@ -286,7 +286,7 @@ typedef struct
                           ((MODE) == TIM_OCMode_Inactive) || \
                           ((MODE) == TIM_OCMode_Toggle)|| \
                           ((MODE) == TIM_OCMode_PWM1) || \
-                          ((MODE) == TIM_OCMode_PWM2) ||	\
+                          ((MODE) == TIM_OCMode_PWM2) ||    \
                           ((MODE) == TIM_ForcedAction_Active) || \
                           ((MODE) == TIM_ForcedAction_InActive))
 /**
@@ -646,7 +646,7 @@ typedef struct
                                ((BASE) == TIM_DMABase_CCR3) || \
                                ((BASE) == TIM_DMABase_CCR4) || \
                                ((BASE) == TIM_DMABase_BDTR) || \
-							   ((BASE) == TIM_DMABase_DCR) || \
+                               ((BASE) == TIM_DMABase_DCR) || \
                                ((BASE) == TIM_DMABase_OR))
 /**
   * @}

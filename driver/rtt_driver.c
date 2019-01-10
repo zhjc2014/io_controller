@@ -8,13 +8,13 @@
 
 #if ENABLE_RTT_DRV
 
-static int32_t drv_rtt_init		(void)
+static int32_t drv_rtt_init        (void)
 {
     SEGGER_RTT_Init();
-	return 0;
+    return 0;
 }
 
-static int32_t drv_rtt_write	(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p_real)
+static int32_t drv_rtt_write    (uint8_t* pSrc,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
     uint32_t write_len = 0;
     write_len =   SEGGER_RTT_Write(0,(char*)pSrc,len);
@@ -22,7 +22,7 @@ static int32_t drv_rtt_write	(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32
     return 0;
 }
 
-static int32_t drv_rtt_read	(uint8_t* p_dest,uint32_t len	,uint32_t offset,uint32_t* p_real)
+static int32_t drv_rtt_read    (uint8_t* p_dest,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
     uint32_t read_len = 0;
     read_len =   SEGGER_RTT_Read(0,(char*)p_dest,len);
@@ -32,7 +32,7 @@ static int32_t drv_rtt_read	(uint8_t* p_dest,uint32_t len	,uint32_t offset,uint3
 
 int fputc(int ch, FILE *f)
 {
-    char data = ch;	
+    char data = ch;    
     SEGGER_RTT_Write(0, &data, 1);
     return (int)data;
 }

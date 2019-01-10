@@ -10,25 +10,25 @@
 
 typedef struct _uart_obj
 {
-    USART_TypeDef*	        uart_port;
+    USART_TypeDef*            uart_port;
     uint32_t                uart_rcc;
-	uint32_t				uart_def_baud;
+    uint32_t                uart_def_baud;
     IRQn_Type               uart_irq_src;
     uint8_t                 irq_prio;
     
-	GPIO_TypeDef*		    uart_pin_port;
+    GPIO_TypeDef*            uart_pin_port;
     uint32_t                uart_pin_rcc;
-    uint16_t				uart_tx_pin;
+    uint16_t                uart_tx_pin;
     uint8_t                 tx_pin_source;
-	uint16_t				uart_rx_pin;
+    uint16_t                uart_rx_pin;
     uint8_t                 rx_pin_source;
     
-    kfifo_t				    uart_tx_fifo;
-	kfifo_t				    uart_rx_fifo;
+    kfifo_t                    uart_tx_fifo;
+    kfifo_t                    uart_rx_fifo;
     
     volatile uint8_t        flag_is_in_sending;
-	uint8_t 				send_char;
-	uint8_t 				recv_char;
+    uint8_t                 send_char;
+    uint8_t                 recv_char;
 
 }uart_obj_t;
 
@@ -73,16 +73,16 @@ void bsp_uart_init(uint8_t uart_num)
     GPIO_InitStructure.GPIO_OType                   = GPIO_OType_PP;
     GPIO_InitStructure.GPIO_PuPd                    = GPIO_PuPd_UP;//GPIO_PuPd_NOPULL;
 
-	USART_InitStructure.USART_BaudRate              = UART_OBJ.uart_def_baud;
-	USART_InitStructure.USART_WordLength            = USART_WordLength_8b;
-	USART_InitStructure.USART_StopBits              = USART_StopBits_1;
-	USART_InitStructure.USART_Parity                = USART_Parity_No;
-	USART_InitStructure.USART_HardwareFlowControl   = USART_HardwareFlowControl_None;
-	USART_InitStructure.USART_Mode                  = USART_Mode_Rx | USART_Mode_Tx;
+    USART_InitStructure.USART_BaudRate              = UART_OBJ.uart_def_baud;
+    USART_InitStructure.USART_WordLength            = USART_WordLength_8b;
+    USART_InitStructure.USART_StopBits              = USART_StopBits_1;
+    USART_InitStructure.USART_Parity                = USART_Parity_No;
+    USART_InitStructure.USART_HardwareFlowControl   = USART_HardwareFlowControl_None;
+    USART_InitStructure.USART_Mode                  = USART_Mode_Rx | USART_Mode_Tx;
 
-	NVIC_InitStructure.NVIC_IRQChannel              = UART_OBJ.uart_irq_src;
-	NVIC_InitStructure.NVIC_IRQChannelPriority      = UART_OBJ.irq_prio;
-	NVIC_InitStructure.NVIC_IRQChannelCmd           = ENABLE;
+    NVIC_InitStructure.NVIC_IRQChannel              = UART_OBJ.uart_irq_src;
+    NVIC_InitStructure.NVIC_IRQChannelPriority      = UART_OBJ.irq_prio;
+    NVIC_InitStructure.NVIC_IRQChannelCmd           = ENABLE;
 
     if(UART_OBJ.uart_port == USART1)
     {
@@ -107,20 +107,20 @@ void bsp_uart_init(uint8_t uart_num)
         GPIO_PinAFConfig(UART_OBJ.uart_pin_port, UART_OBJ.rx_pin_source, GPIO_AF_1);  
     }
     
-	NVIC_Init(&NVIC_InitStructure);
+    NVIC_Init(&NVIC_InitStructure);
     
-	USART_Init      (UART_OBJ.uart_port, &USART_InitStructure);
-	USART_ITConfig  (UART_OBJ.uart_port, USART_IT_RXNE, ENABLE);
+    USART_Init      (UART_OBJ.uart_port, &USART_InitStructure);
+    USART_ITConfig  (UART_OBJ.uart_port, USART_IT_RXNE, ENABLE);
     USART_ITConfig  (UART_OBJ.uart_port, USART_IT_PE  , ENABLE); //-----------
     USART_ITConfig  (UART_OBJ.uart_port, USART_IT_ERR , ENABLE); //-------------
     
-	USART_Cmd(UART_OBJ.uart_port, ENABLE);
+    USART_Cmd(UART_OBJ.uart_port, ENABLE);
 }
 
 int32_t bsp_uart_send(uint8_t uart_num,uint8_t* pbuf,int32_t len)
 {
     int32_t real_len = 0;
-	if(len==0){return 0;}
+    if(len==0){return 0;}
     if(uart_num>=ARRY_ITEMS_NUM(uart_tab)){DBG_E("bsp_uart_init error! uart_num:%d the max:%d",uart_num,ARRY_ITEMS_NUM(uart_tab));}
 
     real_len = kfifo_push_in(&UART_OBJ.uart_tx_fifo,pbuf,len);
@@ -128,15 +128,15 @@ int32_t bsp_uart_send(uint8_t uart_num,uint8_t* pbuf,int32_t len)
     if(UART_OBJ.flag_is_in_sending==0){UART_OBJ.flag_is_in_sending=1;}
     
     USART_ITConfig(UART_OBJ.uart_port, USART_IT_TXE, ENABLE);
-	return real_len;
+    return real_len;
 }
 
-int32_t bsp_uart_read		(uint8_t uart_num,uint8_t* p_dest,int32_t len	)
+int32_t bsp_uart_read        (uint8_t uart_num,uint8_t* p_dest,int32_t len    )
 {
-	int32_t real_len = 0;
+    int32_t real_len = 0;
     if(uart_num>=ARRY_ITEMS_NUM(uart_tab)){DBG_E("bsp_uart_init error! uart_num:%d the max:%d",uart_num,ARRY_ITEMS_NUM(uart_tab));}
-	real_len = kfifo_pull_out(&UART_OBJ.uart_rx_fifo,p_dest,len);
-	return real_len;
+    real_len = kfifo_pull_out(&UART_OBJ.uart_rx_fifo,p_dest,len);
+    return real_len;
 }
 
 void uart_irq_action(uint8_t uart_num)
@@ -145,7 +145,7 @@ void uart_irq_action(uint8_t uart_num)
     {
         if(kfifo_pull_out(&UART_OBJ.uart_tx_fifo,&UART_OBJ.send_char,1))
         {
-            USART_SendData(UART_OBJ.uart_port, UART_OBJ.send_char);				
+            USART_SendData(UART_OBJ.uart_port, UART_OBJ.send_char);                
         }
         else
         {
@@ -153,21 +153,21 @@ void uart_irq_action(uint8_t uart_num)
             USART_ITConfig(UART_OBJ.uart_port, USART_IT_TXE, DISABLE);
         }
     }
-	
-	if(USART_GetITStatus(UART_OBJ.uart_port, USART_IT_RXNE) != RESET)
-	{
-		USART_ClearITPendingBit(UART_OBJ.uart_port, USART_IT_RXNE);
-		UART_OBJ.recv_char = USART_ReceiveData(UART_OBJ.uart_port);
-		kfifo_push_in(&UART_OBJ.uart_rx_fifo,&UART_OBJ.recv_char,1);
-	}
+    
+    if(USART_GetITStatus(UART_OBJ.uart_port, USART_IT_RXNE) != RESET)
+    {
+        USART_ClearITPendingBit(UART_OBJ.uart_port, USART_IT_RXNE);
+        UART_OBJ.recv_char = USART_ReceiveData(UART_OBJ.uart_port);
+        kfifo_push_in(&UART_OBJ.uart_rx_fifo,&UART_OBJ.recv_char,1);
+    }
 
-	if (USART_GetFlagStatus(UART_OBJ.uart_port, USART_FLAG_ORE) == SET)  
-	{  
-	    //USART_ClearITPendingBit(g_uart_init_tab[uart_port].uart_port,USART_IT_ORE);  
+    if (USART_GetFlagStatus(UART_OBJ.uart_port, USART_FLAG_ORE) == SET)  
+    {  
+        //USART_ClearITPendingBit(g_uart_init_tab[uart_port].uart_port,USART_IT_ORE);  
 //        UART_OBJ.recv_char = USART_ReceiveData(UART_OBJ.uart_port);
-//		kfifo_push_in(&UART_OBJ.uart_rx_fifo,&UART_OBJ.recv_char,1);
-		USART_ClearFlag(UART_OBJ.uart_port,USART_FLAG_ORE);  //¶ÁSR
-	}
+//        kfifo_push_in(&UART_OBJ.uart_rx_fifo,&UART_OBJ.recv_char,1);
+        USART_ClearFlag(UART_OBJ.uart_port,USART_FLAG_ORE);  //¶ÁSR
+    }
     
     if(USART_GetFlagStatus(UART_OBJ.uart_port, USART_FLAG_PE) != RESET)
     {//?  @arg USART_IT_PE     : Parity Error interrupt

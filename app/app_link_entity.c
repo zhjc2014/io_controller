@@ -10,12 +10,12 @@ extern int HOST_GADDR;
 
 static link_route_t sg_route_tab[] = {
     //               enable                 distination addr            link id, retransmission by this link
-    ADD_ADDR_ROUTE(EN_ROUTE,			    PC_ADDR,			        PC_LINK_ID,				        NULL		),
-    ADD_ADDR_ROUTE(EN_ROUTE,			    CAR0_ADDR,			        RF_LINK_0_ID,				    NULL		),
-    ADD_ADDR_ROUTE(EN_ROUTE,			    CAR1_ADDR,			        RF_LINK_1_ID,				    NULL		),
-    ADD_ADDR_ROUTE(EN_ROUTE,			    CAR2_ADDR,			        RF_LINK_2_ID,				    NULL		),
-    ADD_ADDR_ROUTE(EN_ROUTE,			    CAR3_ADDR,			        RF_LINK_3_ID,				    NULL		),
-    ADD_ADDR_ROUTE(EN_ROUTE,			    CAR4_ADDR,			        RF_LINK_4_ID,				    NULL		),
+    ADD_ADDR_ROUTE(EN_ROUTE,                PC_ADDR,                    PC_LINK_ID,                        NULL        ),
+    ADD_ADDR_ROUTE(EN_ROUTE,                CAR0_ADDR,                    RF_LINK_0_ID,                    NULL        ),
+    ADD_ADDR_ROUTE(EN_ROUTE,                CAR1_ADDR,                    RF_LINK_1_ID,                    NULL        ),
+    ADD_ADDR_ROUTE(EN_ROUTE,                CAR2_ADDR,                    RF_LINK_2_ID,                    NULL        ),
+    ADD_ADDR_ROUTE(EN_ROUTE,                CAR3_ADDR,                    RF_LINK_3_ID,                    NULL        ),
+    ADD_ADDR_ROUTE(EN_ROUTE,                CAR4_ADDR,                    RF_LINK_4_ID,                    NULL        ),
 };
 
 int32_t pc_link_route_check(hal_frame_info_t* p_frame, uint8_t* p_tag_link_id)

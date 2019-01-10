@@ -72,19 +72,19 @@ void bsp_pwm_init(void)
     
     
     TIM_TimeBaseStructure.TIM_Prescaler         = 960;//时钟频率的预分频值
-	TIM_TimeBaseStructure.TIM_CounterMode       = TIM_CounterMode_Up; //向上计数 
-	TIM_TimeBaseStructure.TIM_Period            = 1000;//自动重装载寄存器周期值
-	TIM_TimeBaseStructure.TIM_ClockDivision     = 0;//时钟分割值
-	TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;
+    TIM_TimeBaseStructure.TIM_CounterMode       = TIM_CounterMode_Up; //向上计数 
+    TIM_TimeBaseStructure.TIM_Period            = 1000;//自动重装载寄存器周期值
+    TIM_TimeBaseStructure.TIM_ClockDivision     = 0;//时钟分割值
+    TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;
     
     //输出模式配置
-	TIM_OCInitStructure.TIM_OCMode          = TIM_OCMode_PWM2;//TIM脉冲宽度调制模式2
-	TIM_OCInitStructure.TIM_OutputState     = TIM_OutputState_Enable;//使能输出比较状态
-	TIM_OCInitStructure.TIM_OutputNState    = TIM_OutputNState_Disable;//失能输出比较N状态
-	TIM_OCInitStructure.TIM_OCPolarity      = TIM_OCPolarity_High;//TIM输出比较极性高
-	TIM_OCInitStructure.TIM_OCIdleState     = TIM_OCIdleState_Set;//当MOE=0时，设置TIM输出比较空闲状态
-	TIM_OCInitStructure.TIM_Pulse           = 10;//占空比赋值
-	
+    TIM_OCInitStructure.TIM_OCMode          = TIM_OCMode_PWM2;//TIM脉冲宽度调制模式2
+    TIM_OCInitStructure.TIM_OutputState     = TIM_OutputState_Enable;//使能输出比较状态
+    TIM_OCInitStructure.TIM_OutputNState    = TIM_OutputNState_Disable;//失能输出比较N状态
+    TIM_OCInitStructure.TIM_OCPolarity      = TIM_OCPolarity_High;//TIM输出比较极性高
+    TIM_OCInitStructure.TIM_OCIdleState     = TIM_OCIdleState_Set;//当MOE=0时，设置TIM输出比较空闲状态
+    TIM_OCInitStructure.TIM_Pulse           = 10;//占空比赋值
+    
 
     for(i=0;i<ARRY_ITEMS_NUM(pwm_tab);i++)
     {
@@ -113,7 +113,7 @@ int32_t bsp_pwm_write(uint8_t pwm_ch,uint32_t val)
     {
          pwm_tab[pwm_ch].TIM_SetComparex(pwm_tab[pwm_ch].Timer,val); 
     }
-	return 0;
+    return 0;
 }
 
 #if 1
@@ -134,13 +134,13 @@ int32_t set_pwm(uint8_t argc, uint8_t *argv[])
     {
         DBG_W("warn the set_pwm param is error: eg:set_pwm ch val");
     }
-	return RET_OK;
+    return RET_OK;
 }
 
 REG_SHELL_CMD(set_pwm,0,set_pwm,"set_pwm", "eg:set_pwm ch val\r\n ");
 #endif
 
 void TIM3_IRQHandler(void)
-{	
-	TIM_ClearITPendingBit (TIM3, TIM_IT_Update);	//必须要清除中断标志位
+{    
+    TIM_ClearITPendingBit (TIM3, TIM_IT_Update);    //必须要清除中断标志位
 }

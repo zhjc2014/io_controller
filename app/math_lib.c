@@ -46,7 +46,7 @@ int32_t line_remap_int(int32_t val, int32_t min, int32_t mid, int32_t max, int32
     return (int32_t)tag_val;
 }
 
-// 快速开方倒数
+// �?速开方倒数
 //-----------------------------------
 float invsqrt (float x)
 {
@@ -143,19 +143,19 @@ float pid_calc (pid_obj_t * pid_obj,  move_avg_obj_t* p_move_avg_obj, float tag,
 {
     float cur_d_res = 0;
     float cur_d_gain = 0;
-    pid_obj->tag 		        = tag;
-    pid_obj->fdbk 		        = fdbk;
-    pid_obj->delta_t	        = T;
-    pid_obj->err 		        = pid_obj->tag - pid_obj->fdbk;
+    pid_obj->tag                 = tag;
+    pid_obj->fdbk                 = fdbk;
+    pid_obj->delta_t            = T;
+    pid_obj->err                 = pid_obj->tag - pid_obj->fdbk;
     if(err_handle != NULL) {
         pid_obj->err = err_handle(pid_obj->err);
     }
 
-    pid_obj->P_result		     = pid_obj->kp * pid_obj->err;
-    pid_obj->I_err		        += (pid_obj->err * pid_obj->delta_t);
-    pid_obj->I_err				 = limit_val_f(pid_obj->I_err, pid_obj->I_lower_limit / pid_obj->ki, pid_obj->I_uper_limit / pid_obj->ki);
+    pid_obj->P_result             = pid_obj->kp * pid_obj->err;
+    pid_obj->I_err                += (pid_obj->err * pid_obj->delta_t);
+    pid_obj->I_err                 = limit_val_f(pid_obj->I_err, pid_obj->I_lower_limit / pid_obj->ki, pid_obj->I_uper_limit / pid_obj->ki);
     pid_obj->D_err               = pid_obj->err - pid_obj->last_err;
-    //微分环节看是否需要多几级，做个平滑
+    //�?分环节看�?否需要�?�几级，做个平滑
     if(p_move_avg_obj != NULL) {
         pid_obj->D_move_avg_err     = move_average_run(p_move_avg_obj, pid_obj->D_err);
         pid_obj->D_err              = pid_obj->D_move_avg_err;
@@ -163,21 +163,21 @@ float pid_calc (pid_obj_t * pid_obj,  move_avg_obj_t* p_move_avg_obj, float tag,
 
     pid_obj->last_err           = pid_obj->err;
 
-    pid_obj->I_result		    =  pid_obj->ki * pid_obj->I_err;
+    pid_obj->I_result            =  pid_obj->ki * pid_obj->I_err;
     pid_obj->I_result           =  limit_val_f(pid_obj->I_result, pid_obj->I_lower_limit, pid_obj->I_uper_limit);
 
     if(pid_obj->enable_incomplet_d) {
-        cur_d_res					= (pid_obj->incomplete_T) * pid_obj->D_err + (1.0f - pid_obj->incomplete_T) * pid_obj->D_err_last;
-        cur_d_gain					= remap(fabs(pid_obj->err), pid_obj->incomplete_err_min, pid_obj->incomplete_err_max, pid_obj->incomplete_Kd_min, pid_obj->incomplete_Kd_max);
+        cur_d_res                    = (pid_obj->incomplete_T) * pid_obj->D_err + (1.0f - pid_obj->incomplete_T) * pid_obj->D_err_last;
+        cur_d_gain                    = remap(fabs(pid_obj->err), pid_obj->incomplete_err_min, pid_obj->incomplete_err_max, pid_obj->incomplete_Kd_min, pid_obj->incomplete_Kd_max);
 
     } else {
-        cur_d_res					= pid_obj->D_err;
-        cur_d_gain 					= pid_obj->kd;
+        cur_d_res                    = pid_obj->D_err;
+        cur_d_gain                     = pid_obj->kd;
     }
 
 
 
-    pid_obj->D_err_last		= pid_obj->D_err;
+    pid_obj->D_err_last        = pid_obj->D_err;
 
 
     pid_obj->D_result           =  cur_d_gain * cur_d_res;
@@ -190,11 +190,11 @@ float pid_calc (pid_obj_t * pid_obj,  move_avg_obj_t* p_move_avg_obj, float tag,
 //
 //        if(pid_obj->D_move_avg_err)
 //        {
-//            pid_obj->pid_output = pid_obj->pid_output + (total* scale*0.05);  //前馈增大
+//            pid_obj->pid_output = pid_obj->pid_output + (total* scale*0.05);  //前�?��?�大
 //        }
 //        else
 //        {
-//            pid_obj->pid_output = pid_obj->pid_output - (total* scale*0.05);  //前馈增大
+//            pid_obj->pid_output = pid_obj->pid_output - (total* scale*0.05);  //前�?��?�大
 //        }
 //    }
 
@@ -217,18 +217,18 @@ void clear_pid_inter(new_pid_obj_t* p_pid_obj)
 }
 
 
-float  new_pid_calc(new_pid_obj_t* p_pid_obj, float tag, float fbk, float	dt)
+float  new_pid_calc(new_pid_obj_t* p_pid_obj, float tag, float fbk, float    dt)
 {
     float cur_d_err = 0;
 #define MIN_PER  -100.0f
 #define MAX_PER  +100.0f
-    //参数归一化
+    //参数归一�?
 
     p_pid_obj->tag       = tag;
     p_pid_obj->fbk       = fbk;
 
 
-    p_pid_obj->tag_per 	 = remap(p_pid_obj->tag, p_pid_obj->input_min, p_pid_obj->input_max, MIN_PER, MAX_PER);
+    p_pid_obj->tag_per      = remap(p_pid_obj->tag, p_pid_obj->input_min, p_pid_obj->input_max, MIN_PER, MAX_PER);
     p_pid_obj->fbk_per   = remap(p_pid_obj->fbk, p_pid_obj->input_min, p_pid_obj->input_max, MIN_PER, MAX_PER);
 
     p_pid_obj->err       = p_pid_obj->tag_per  - p_pid_obj->fbk_per;
@@ -247,7 +247,7 @@ float  new_pid_calc(new_pid_obj_t* p_pid_obj, float tag, float fbk, float	dt)
     p_pid_obj->last_d_err = p_pid_obj->d_err ;
 
 
-    //---------------------------位置和增量PID
+    //---------------------------位置和�?�量PID
     if(p_pid_obj->is_mode_inc_pid) {
         p_pid_obj->cur_p_err  =  p_pid_obj->d_err;
         p_pid_obj->cur_i_err  =  p_pid_obj->err;
@@ -263,12 +263,12 @@ float  new_pid_calc(new_pid_obj_t* p_pid_obj, float tag, float fbk, float	dt)
 
     cur_d_err = p_pid_obj->cur_d_err ;
 
-    //-----------------------积分分离
+    //-----------------------�?分分�?
     if(p_pid_obj->en_integral_separation) {
 
     }
 
-    //-----------------------不完全积分
+    //-----------------------不完全积�?
     if(p_pid_obj->en_incompletely_differentiated) {
         p_pid_obj->cur_d_err = (p_pid_obj->incomplete_diff_const) * cur_d_err + (1.0f - p_pid_obj->incomplete_diff_const) * (p_pid_obj->last_cur_d_err );
         p_pid_obj->last_cur_d_err  = cur_d_err;
@@ -286,8 +286,8 @@ float  new_pid_calc(new_pid_obj_t* p_pid_obj, float tag, float fbk, float	dt)
     p_pid_obj->output_per     = p_pid_obj->kp_output + p_pid_obj->ki_output + p_pid_obj->kd_output;
 
 
-    //输出重映射
-    p_pid_obj->output	      = remap(p_pid_obj->output_per, MIN_PER, MAX_PER, p_pid_obj->output_min, p_pid_obj->output_max);
+    //输出重映�?
+    p_pid_obj->output          = remap(p_pid_obj->output_per, MIN_PER, MAX_PER, p_pid_obj->output_min, p_pid_obj->output_max);
 
 
     //DBG_I("tag:%0.1f  tagper:%0.1f  fbk:%0.1f",p_pid_obj->tag,p_pid_obj->tag_per,p_pid_obj->fbk_per);

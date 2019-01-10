@@ -6,16 +6,16 @@
 
 
 #if ENABLE_ADC_DRV
-static int32_t drv_key_init		(void)
+static int32_t drv_key_init        (void)
 {
     bsp_adc_init();
-	return 0;
+    return 0;
 }
 
-static int32_t drv_adc_read		(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p_real)
+static int32_t drv_adc_read        (uint8_t* pSrc,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
-	uint32_t rd_len = 0;
-	rd_len = bsp_adc_read(pSrc,len,offset);
+    uint32_t rd_len = 0;
+    rd_len = bsp_adc_read(pSrc,len,offset);
     if(p_real!=NULL) {*p_real = rd_len; }
     return 0;
 }

@@ -9,9 +9,9 @@ typedef struct _dev_push_t dev_push_t;
 typedef struct _hal_obj_t  hal_obj_t;
 
                                     
-int32_t	hal_init(void);
+int32_t    hal_init(void);
 void hal_dev_notify(uint32_t dev_id,uint32_t code,uint8_t* pbuf, uint32_t len);
-hal_obj_t*	hal_get_handler(void);
+hal_obj_t*    hal_get_handler(void);
                                     
 
 #define ERR_DRV_ID              0xff
@@ -20,10 +20,10 @@ hal_obj_t*	hal_get_handler(void);
 
 typedef struct
 {
-	uint32_t 	sys_second;
-	uint32_t	sys_ms;
-	uint32_t	sys_us;
-	uint32_t 	sys_ms_tick;
+    uint32_t     sys_second;
+    uint32_t    sys_ms;
+    uint32_t    sys_us;
+    uint32_t     sys_ms_tick;
 }sys_time_t;
 
 //enum defined in the usb_type

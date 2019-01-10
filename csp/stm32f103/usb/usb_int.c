@@ -67,11 +67,11 @@ void CTR_LP(void)
       /* save RX & TX status */
       /* and set both to NAK */
       
-	    SaveRState = _GetENDPOINT(ENDP0);
-	    SaveTState = SaveRState & EPTX_STAT;
-	    SaveRState &=  EPRX_STAT;	
+        SaveRState = _GetENDPOINT(ENDP0);
+        SaveTState = SaveRState & EPTX_STAT;
+        SaveRState &=  EPRX_STAT;    
 
-	    _SetEPRxTxStatus(ENDP0,EP_RX_NAK,EP_TX_NAK);
+        _SetEPRxTxStatus(ENDP0,EP_RX_NAK,EP_TX_NAK);
 
       /* DIR bit = origin of the interrupt */
 
@@ -88,7 +88,7 @@ void CTR_LP(void)
            /* before terminate set Tx & Rx status */
 
             _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
-		  return;
+          return;
       }
       else
       {
@@ -105,7 +105,7 @@ void CTR_LP(void)
           Setup0_Process();
           /* before terminate set Tx & Rx status */
 
-		      _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+              _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
           return;
         }
 
@@ -115,7 +115,7 @@ void CTR_LP(void)
           Out0_Process();
           /* before terminate set Tx & Rx status */
      
-		     _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
+             _SetEPRxTxStatus(ENDP0,SaveRState,SaveTState);
           return;
         }
       }

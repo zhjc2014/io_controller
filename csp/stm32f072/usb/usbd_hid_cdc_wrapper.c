@@ -112,15 +112,15 @@ const uint8_t USBD_HID_CDC_CfgDesc[USB_HID_CDC_CONFIG_DESC_SIZ] =
   0x00,          /*bInterval: Polling Interval (32 ms)*/
   /* 34 */
   
-  0x07,	/* bLength: Endpoint Descriptor size */
-  USB_ENDPOINT_DESCRIPTOR_TYPE,	/* bDescriptorType: */
-  /*	Endpoint descriptor type */
-  HID_OUT_EP,	/* bEndpointAddress: */
-  /*	Endpoint Address (OUT) */
-  0x03,	/* bmAttributes: Interrupt endpoint */
-  HID_OUT_PACKET,	/* wMaxPacketSize: 2 Bytes max  */
+  0x07,    /* bLength: Endpoint Descriptor size */
+  USB_ENDPOINT_DESCRIPTOR_TYPE,    /* bDescriptorType: */
+  /*    Endpoint descriptor type */
+  HID_OUT_EP,    /* bEndpointAddress: */
+  /*    Endpoint Address (OUT) */
+  0x03,    /* bmAttributes: Interrupt endpoint */
+  HID_OUT_PACKET,    /* wMaxPacketSize: 2 Bytes max  */
   0x00,
-  0x00,	/* bInterval: Polling Interval (20 ms) */
+  0x00,    /* bInterval: Polling Interval (20 ms) */
   /* 41 */
   
   /******** IAD should be positioned just before the CDC interfaces ******

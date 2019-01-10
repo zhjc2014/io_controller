@@ -106,7 +106,7 @@ void task_sch (uint8_t group)
 int32_t list_tasks(uint8_t argc, uint8_t *argv[])
 {
     uint32_t  i = 0;
-	DBG_I("cur system run %d tasks ",cur_reg_task_num);
+    DBG_I("cur system run %d tasks ",cur_reg_task_num);
 
     for(i=0;i<cur_reg_task_num;i++)
     {
@@ -116,7 +116,7 @@ int32_t list_tasks(uint8_t argc, uint8_t *argv[])
         }
     }
 
-	return RET_OK;
+    return RET_OK;
 }
 
 REG_SHELL_CMD_X(ls_tasks,0,list_tasks,"list_tasks", "list_tasks.  eg ls_tasks \r\n ");

@@ -458,7 +458,7 @@ FLASH_Status FLASH_ProgramHalfWord(uint32_t Address, uint16_t Data)
       (++) FLASH_Status FLASH_OB_BOOTConfig(uint8_t OB_BOOT1)
            => to set or reset BOOT1 
       (++) FLASH_Status FLASH_OB_VDDAConfig(uint8_t OB_VDDA_ANALOG) 
-           => to enable or disable the VDDA Analog Monitoring 			 
+           => to enable or disable the VDDA Analog Monitoring              
       (++) You can write all User Options bytes at once using a single function
            by calling FLASH_Status FLASH_OB_WriteUser(uint8_t OB_USER)
       (++) FLASH_OB_ProgramData(uint32_t Address, uint8_t Data) to program the 

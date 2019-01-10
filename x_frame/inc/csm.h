@@ -12,19 +12,19 @@ typedef int32_t (*pf_step_func)    (csm_t* p_cur_csm);
                                                           
 typedef struct                                            
 {                                                         
-	uint32_t 		step_num;                                     
-	pf_step_func	step_func;                                  
+    uint32_t         step_num;                                     
+    pf_step_func    step_func;                                  
 }csm_item_t;                                              
                                                           
 struct __csm_t_                                           
 {                
     const char*     name;
-	const csm_item_t*		p_csm_tab;                                  
-	uint32_t 		csm_item_num;                                 
-	uint32_t		last_run_index;                                
-	uint32_t		cur_run_index;   
-	uint32_t        start_index;
-	uint32_t 		flag_init;
+    const csm_item_t*        p_csm_tab;                                  
+    uint32_t         csm_item_num;                                 
+    uint32_t        last_run_index;                                
+    uint32_t        cur_run_index;   
+    uint32_t        start_index;
+    uint32_t         flag_init;
     uint32_t        need_tragle;  //状态刚切换的第一次会置为1 ,第二次之后就为0
     uint32_t        is_first_in;  //状态刚切换的第一次会置为1 ,第二次之后就为0
 };                

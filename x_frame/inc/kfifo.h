@@ -22,7 +22,7 @@ int32_t     kfifo_init      (char* name,kfifo_t* pfifo,uint8_t* pbuf,uint32_t si
 uint32_t    kfifo_push_in   (kfifo_t* pfifo,uint8_t* pbuf, uint32_t len);
 uint32_t    kfifo_pull_out  (kfifo_t* pfifo,uint8_t* pbuf, uint32_t len);
 uint32_t    kfifo_status    (kfifo_t* pfifo);
-void 		kfifo_reset(kfifo_t* pfifo);
+void         kfifo_reset(kfifo_t* pfifo);
 uint32_t    kfifo_get_w_index(kfifo_t* pfifo);
 uint32_t    kfifo_get_r_index(kfifo_t* pfifo);
 

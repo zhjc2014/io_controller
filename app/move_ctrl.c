@@ -91,7 +91,7 @@
 //            angle_pid_cnt = 0;
 //            if (fabs(lock_angle - g_imu_info.angle_z) > ANGLE_CHANGE_THR){
 //                cal_result = pid_calc(&angle_pid, 
-//                                    NULL,	//MAKE_MOVE_AVG_HANDLE(yaw_ang),
+//                                    NULL,    //MAKE_MOVE_AVG_HANDLE(yaw_ang),
 //                                    lock_angle, 
 //                                    -g_imu_info.angle_z, 
 //                                    TIME_DELT * OUT_PID_CNT,
@@ -104,7 +104,7 @@
 //    }
 //    
 //    *yaw_out = pid_calc(&angle_speed_pid, 
-//                            NULL,	//MAKE_MOVE_AVG_HANDLE(yaw_ang),
+//                            NULL,    //MAKE_MOVE_AVG_HANDLE(yaw_ang),
 //                            angle_speed_pid_in, 
 //                            -g_imu_info.angle_speed_z, 
 //                            TIME_DELT,

@@ -93,7 +93,7 @@ __Vectors       DCD     __initial_sp                   ; Top of Stack
                 DCD     EXTI2_3_IRQHandler             ; EXTI Line 2 and 3
                 DCD     EXTI4_15_IRQHandler            ; EXTI Line 4 to 15
                 DCD     TSC_IRQHandler                  ; TS
-                DCD     DMA1_Ch1_IRQHandler       		 ; DMA1 Channel 1
+                DCD     DMA1_Ch1_IRQHandler                ; DMA1 Channel 1
                 DCD     DMA1_Ch2_3_DMA2_Ch1_2_IRQHandler ; DMA1 Channel 2 and 3 & DMA2 Channel 1 and 2
                 DCD     DMA1_Ch4_7_DMA2_Ch3_5_IRQHandler ; DMA1 Channel 4 to 7 & DMA2 Channel 3 to 5 
                 DCD     ADC1_COMP_IRQHandler           ; ADC1, COMP1 and COMP2 

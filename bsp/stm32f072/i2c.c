@@ -366,7 +366,7 @@ int32_t iic_r(uint8_t argc, uint8_t *argv[])
     {
         DBG_W("warn the smbus_r param is error: eg:iic_r cmd len");
     }
-	return RET_OK;
+    return RET_OK;
 }
 
 REG_SHELL_CMD(iic_r,0,iic_r,"smbus_r", "eg:iic_r cmd  len\r\n ");

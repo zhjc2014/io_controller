@@ -38,20 +38,20 @@ enum
 
 enum
 {
-	PWM_RED_LED = 0,
-	PWM_BLUE_LED,    
+    PWM_RED_LED = 0,
+    PWM_BLUE_LED,    
 };
 
 //是否开启对应驱动
 #define ENABLE_SYS_TICK_DRV         1 
 #if (DEFAULT_PC_LINK_DEV == DRV_UART1)
-	#define ENABLE_UART_1_DRV           1 
-	#define ENABLE_USB_VCP_DRV          0
-	#define ENABLE_CAN					1
+    #define ENABLE_UART_1_DRV           1 
+    #define ENABLE_USB_VCP_DRV          0
+    #define ENABLE_CAN                    1
 #else
-	#define ENABLE_UART_1_DRV           0 
-	#define ENABLE_USB_VCP_DRV          1
-	#define ENABLE_CAN					0
+    #define ENABLE_UART_1_DRV           0 
+    #define ENABLE_USB_VCP_DRV          1
+    #define ENABLE_CAN                    0
 #endif
 #define ENABLE_UART_2_DRV           0 
 #define ENABLE_UART_3_DRV           0 

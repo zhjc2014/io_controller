@@ -6,13 +6,13 @@
 
 
 #if ENABLE_BLOOD_BAR_DRV
-static int32_t drv_blood_bar_init		(void)
+static int32_t drv_blood_bar_init        (void)
 {
     ht1621b_init();
     return 0;
 }
 
-int32_t drv_blood_bar_write		(uint8_t* pSrc, uint32_t len	, uint32_t offset, uint32_t* p_real)
+int32_t drv_blood_bar_write        (uint8_t* pSrc, uint32_t len    , uint32_t offset, uint32_t* p_real)
 {
     uint32_t dat = 0;
     if(len == sizeof(uint32_t)) {

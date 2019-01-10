@@ -422,26 +422,26 @@ uint8_t  usbd_cdc_DataIn (void *pdev, uint8_t epnum)
 {  
   if (USB_Tx_State == 1)
   {
-	if (last_packet ==1)
-	{
-		last_packet =0;
-		USB_Tx_State = 0;
-		/*Send zero-length packet*/
-		DCD_EP_Tx (pdev, CDC_IN_EP, 0, 0);
-	}
+    if (last_packet ==1)
+    {
+        last_packet =0;
+        USB_Tx_State = 0;
+        /*Send zero-length packet*/
+        DCD_EP_Tx (pdev, CDC_IN_EP, 0, 0);
+    }
     else 
     {
       uint32_t real_len = 0;
       uint32_t rest_len = 0;
-	  real_len = kfifo_pull_out(&vcp_tx_fifo,APP_Rx_Buffer, 64);
+      real_len = kfifo_pull_out(&vcp_tx_fifo,APP_Rx_Buffer, 64);
       rest_len = kfifo_have_len(&vcp_tx_fifo);
-	  if( (real_len==CDC_DATA_IN_PACKET_SIZE) && (rest_len==0))
-	  {
-		 last_packet = 1;	
-	  }
+      if( (real_len==CDC_DATA_IN_PACKET_SIZE) && (rest_len==0))
+      {
+         last_packet = 1;    
+      }
       else if(real_len<CDC_DATA_IN_PACKET_SIZE){USB_Tx_State = 0;}
       else {}
-	  
+      
       /* Prepare the available data buffer to be sent on IN endpoint */
       DCD_EP_Tx (pdev,
                  CDC_IN_EP,
@@ -533,7 +533,7 @@ static void Handle_USBAsynchXfer (void *pdev)
     
     if( (real_len==CDC_DATA_IN_PACKET_SIZE) && (rest_len==0))
     {
-        last_packet = 1;	
+        last_packet = 1;    
     }
     else if(real_len<CDC_DATA_IN_PACKET_SIZE){USB_Tx_State = 0;}
     else {}

@@ -6,18 +6,18 @@
 #include "hw_config.h"
 
 #if ENABLE_USB_VCP_DRV
-static int32_t drv_vcp_init		(void)
+static int32_t drv_vcp_init        (void)
 {
     USB_Config();
-	return 0;
+    return 0;
 }
 
-int32_t drv_vcp_write		(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p_real)
+int32_t drv_vcp_write        (uint8_t* pSrc,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
     USB_TxWrite(pSrc, len);
     return 0;
 }
-int32_t drv_vcp_read		(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p_real)
+int32_t drv_vcp_read        (uint8_t* pSrc,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
     len = USB_RxRead(pSrc, len);
     if (p_real){
@@ -40,23 +40,23 @@ REG_DEV(
 
 
 #if ENABLE_USB_HID_DRV
-static int32_t drv_hid_init		(void)
+static int32_t drv_hid_init        (void)
 {
-	bsp_usb_init();
-	return 0;
+    bsp_usb_init();
+    return 0;
 }
 
-int32_t drv_hid_write		(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p_real)
+int32_t drv_hid_write        (uint8_t* pSrc,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
     uint32_t write_len = 0;
-	write_len = bsp_hid_send(pSrc,len);
+    write_len = bsp_hid_send(pSrc,len);
     if(p_real!=NULL) {*p_real = write_len; }
     return 0;
 }
-int32_t drv_hid_read		(uint8_t* pSrc,uint32_t len	,uint32_t offset,uint32_t* p_real)
+int32_t drv_hid_read        (uint8_t* pSrc,uint32_t len    ,uint32_t offset,uint32_t* p_real)
 {
-	uint32_t read_len = 0;
-	read_len = bsp_hid_read(pSrc,len);
+    uint32_t read_len = 0;
+    read_len = bsp_hid_read(pSrc,len);
     if(p_real!=NULL) {*p_real = read_len; }
     return 0;
 }

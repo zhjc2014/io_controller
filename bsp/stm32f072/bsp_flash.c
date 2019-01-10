@@ -42,14 +42,14 @@ int32_t bsp_flash_write       (uint32_t addr,uint8_t* pbuf,int32_t len)
     return len;
 }
 
-int32_t bsp_flash_read		 (uint32_t addr,uint8_t* p_dest,int32_t len)
+int32_t bsp_flash_read         (uint32_t addr,uint8_t* p_dest,int32_t len)
 {
     
     memcpy(p_dest, (void *)addr, len);
     return len;
 }
 
-int32_t bsp_flash_erase		 (uint32_t address,uint32_t len)
+int32_t bsp_flash_erase         (uint32_t address,uint32_t len)
 {
     uint32_t EraseCounter = 0;
     uint32_t NbrOfPage = 0;
@@ -100,7 +100,7 @@ int32_t flash_w(uint8_t argc, uint8_t *argv[])
     {
         DBG_W("flash_w param error! eg: flash_w addr str");
     }
-	return RET_OK;
+    return RET_OK;
 }
 
 REG_SHELL_CMD(flash_w,0,flash_w,"flash write!!", "eg:flash_w addr str \r\n ");
@@ -128,7 +128,7 @@ int32_t flash_r(uint8_t argc, uint8_t *argv[])
     {
         DBG_W("flash_r param error! eg: read addr len");
     }
-	return RET_OK;
+    return RET_OK;
 }
 
 REG_SHELL_CMD(flash_r,0,flash_r,"flash read!!", "eg:read addr len \r\n ");

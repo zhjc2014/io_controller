@@ -78,7 +78,7 @@ void bsp_can_init(void)
     CAN_InitStructure.CAN_TXFP = DISABLE;                       //优先级由报文的标识符来决定
     CAN_InitStructure.CAN_RFLM = DISABLE;                       //接受溢出时FIFO不锁定，下一个收到的报文覆盖原有报文
     CAN_InitStructure.CAN_Mode = CAN_Mode_Normal;               //CAN硬件工作Normal模式
-//	CAN_InitStructure.CAN_Mode = CAN_Mode_LoopBack;             //CAN硬件工作Normal模式
+//    CAN_InitStructure.CAN_Mode = CAN_Mode_LoopBack;             //CAN硬件工作Normal模式
     //1M bps
     CAN_InitStructure.CAN_Prescaler = 4;
     CAN_InitStructure.CAN_SJW = CAN_SJW_1tq;
@@ -94,7 +94,7 @@ void bsp_can_init(void)
 #if EN_FILTER
     {
         int i;
-        for (i = 0; i < can_rxfilter_len; i++){	
+        for (i = 0; i < can_rxfilter_len; i++){    
             can_rxfilter[i].CAN_FilterIdHigh = id[i] << 5;
             can_rxfilter[i].CAN_FilterIdLow  = 0 | CAN_ID_STD;
             CAN_FilterInit(&can_rxfilter[i]);

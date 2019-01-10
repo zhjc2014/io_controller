@@ -324,7 +324,7 @@ uint32_t CRC_GetCRC(void)
 
 /**
   * @brief  Stores an 8-bit data in the Independent Data(ID) register.
-  * @param  CRC_IDValue: 8-bit value to be stored in the ID register 					
+  * @param  CRC_IDValue: 8-bit value to be stored in the ID register                     
   * @retval None
   */
 void CRC_SetIDRegister(uint8_t CRC_IDValue)

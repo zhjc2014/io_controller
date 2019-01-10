@@ -120,7 +120,7 @@ static void init_all_driver(void)
 
 
 extern void init_shell_item(void);
-int32_t	hal_init(void)
+int32_t    hal_init(void)
 {
     sg_sys_hal.hal_name             = HAL_NAME;
     sg_sys_hal.hal_platform_info    = HAL_PLATFORM;

@@ -332,22 +332,22 @@ typedef enum
 /** @defgroup FLASH_Legacy 
   * @{
   */
-#define FLASH_WRProt_Pages0to3	       OB_WRP_Pages0to3
-#define FLASH_WRProt_Pages4to7	       OB_WRP_Pages4to7
-#define FLASH_WRProt_Pages8to11	       OB_WRP_Pages8to11
-#define FLASH_WRProt_Pages12to15	   OB_WRP_Pages12to15
-#define FLASH_WRProt_Pages16to19	   OB_WRP_Pages16to19
-#define FLASH_WRProt_Pages20to23	   OB_WRP_Pages20to23
-#define FLASH_WRProt_Pages24to27	   OB_WRP_Pages24to27
-#define FLASH_WRProt_Pages28to31	   OB_WRP_Pages28to31
-#define FLASH_WRProt_Pages32to35	   OB_WRP_Pages32to35
-#define FLASH_WRProt_Pages36to39	   OB_WRP_Pages36to39
-#define FLASH_WRProt_Pages40to43	   OB_WRP_Pages40to21
-#define FLASH_WRProt_Pages44to47	   OB_WRP_Pages44to23
-#define FLASH_WRProt_Pages48to51	   OB_WRP_Pages48to51
-#define FLASH_WRProt_Pages52to55	   OB_WRP_Pages52to55
-#define FLASH_WRProt_Pages56to59	   OB_WRP_Pages56to59
-#define FLASH_WRProt_Pages60to63	   OB_WRP_Pages60to63
+#define FLASH_WRProt_Pages0to3           OB_WRP_Pages0to3
+#define FLASH_WRProt_Pages4to7           OB_WRP_Pages4to7
+#define FLASH_WRProt_Pages8to11           OB_WRP_Pages8to11
+#define FLASH_WRProt_Pages12to15       OB_WRP_Pages12to15
+#define FLASH_WRProt_Pages16to19       OB_WRP_Pages16to19
+#define FLASH_WRProt_Pages20to23       OB_WRP_Pages20to23
+#define FLASH_WRProt_Pages24to27       OB_WRP_Pages24to27
+#define FLASH_WRProt_Pages28to31       OB_WRP_Pages28to31
+#define FLASH_WRProt_Pages32to35       OB_WRP_Pages32to35
+#define FLASH_WRProt_Pages36to39       OB_WRP_Pages36to39
+#define FLASH_WRProt_Pages40to43       OB_WRP_Pages40to21
+#define FLASH_WRProt_Pages44to47       OB_WRP_Pages44to23
+#define FLASH_WRProt_Pages48to51       OB_WRP_Pages48to51
+#define FLASH_WRProt_Pages52to55       OB_WRP_Pages52to55
+#define FLASH_WRProt_Pages56to59       OB_WRP_Pages56to59
+#define FLASH_WRProt_Pages60to63       OB_WRP_Pages60to63
 
 
 #define FLASH_WRProt_AllPages          OB_WRP_AllPages
@@ -408,10 +408,10 @@ FLASH_Status FLASH_WaitForLastOperation(uint32_t Timeout);
   * @{
   */
 #define FLASH_EraseOptionBytes               FLASH_OB_Erase
-#define FLASH_EnableWriteProtection	         FLASH_OB_EnableWRP
-#define FLASH_UserOptionByteConfig	         FLASH_OB_UserConfig
+#define FLASH_EnableWriteProtection             FLASH_OB_EnableWRP
+#define FLASH_UserOptionByteConfig             FLASH_OB_UserConfig
 #define FLASH_ProgramOptionByteData          FLASH_OB_ProgramData
-#define FLASH_GetUserOptionByte	             FLASH_OB_GetUser
+#define FLASH_GetUserOptionByte                 FLASH_OB_GetUser
 #define FLASH_GetWriteProtectionOptionByte   FLASH_OB_GetWRP
 
 /**
