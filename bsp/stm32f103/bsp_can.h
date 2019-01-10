@@ -17,6 +17,7 @@ void bsp_can_init(void);
 int bsp_can_read(can_data_t *can_rxdata);
 int bsp_can_write(can_data_t *can_txdata);
 void bsp_can_start_send(void);
+void bsp_can_set_filter(uint32_t id);
 
 #endif
 

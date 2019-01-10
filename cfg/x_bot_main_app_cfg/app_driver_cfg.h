@@ -33,7 +33,41 @@ enum
 
 enum
 {
+    //led
     gpio_led    = 0,
+    //can addr bit
+    gpio_canaddr_bit0,
+    gpio_canaddr_bit1,
+    gpio_canaddr_bit2,
+    gpio_canaddr_bit3,
+
+    //magician 1
+    gpio_magicain1_io1,  
+    gpio_magicain1_io2,  
+    //magician 2
+    gpio_magicain2_io1,  
+    gpio_magicain2_io2,  
+    //magician 3
+    gpio_magicain3_io1,  
+    gpio_magicain3_io2,  
+    //magician 4
+    gpio_magicain4_io1,  
+    gpio_magicain4_io2,  
+    //magician 5
+    gpio_magicain5_io1,  
+    gpio_magicain5_io2,  
+    //magician 6
+    gpio_magicain6_io1,  
+    gpio_magicain6_io2,  
+    //magician 7
+    gpio_magicain7_io1,  
+    gpio_magicain7_io2,  
+    //magician 8
+    gpio_magicain8_io1,  
+    gpio_magicain8_io2,  
+    //magician 9
+    gpio_magicain9_io1,  
+    gpio_magicain9_io2,  
 };
 
 enum
@@ -124,5 +158,6 @@ enum
 #define FLUSH_RX_BUFF           0x04
 
 #define CAN_START_SEND          0x01
+#define CAN_SET_FILTER          0x02
 
 #endif //__APP_DRIVER_CFG_H__

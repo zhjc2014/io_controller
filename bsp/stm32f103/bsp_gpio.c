@@ -29,6 +29,41 @@ const gpio_cfg_t gpio_tab[]=
 {
     //led
     ADD_GPIO_ITEM(GPIOA, 15, 0),  
+
+    //can addr bit
+    ADD_GPIO_ITEM(GPIOB, 4, 1),  
+    ADD_GPIO_ITEM(GPIOB, 5, 1),  
+    ADD_GPIO_ITEM(GPIOB, 6, 1),  
+    ADD_GPIO_ITEM(GPIOB, 7, 1),  
+
+    //io output
+    //magician 1
+    ADD_GPIO_ITEM(GPIOA, 0, 0),  
+    ADD_GPIO_ITEM(GPIOA, 1, 0),  
+    //magician 2
+    ADD_GPIO_ITEM(GPIOA, 2, 0),  
+    ADD_GPIO_ITEM(GPIOA, 3, 0),  
+    //magician 3
+    ADD_GPIO_ITEM(GPIOA, 4, 0),  
+    ADD_GPIO_ITEM(GPIOA, 5, 0),  
+    //magician 4
+    ADD_GPIO_ITEM(GPIOA, 6, 0),  
+    ADD_GPIO_ITEM(GPIOA, 7, 0),
+    //magician 5
+    ADD_GPIO_ITEM(GPIOB, 0, 0),  
+    ADD_GPIO_ITEM(GPIOB, 1, 0),
+    //magician 6
+    ADD_GPIO_ITEM(GPIOB, 10, 0),  
+    ADD_GPIO_ITEM(GPIOB, 11, 0),
+    //magician 7
+    ADD_GPIO_ITEM(GPIOB, 12, 0),  
+    ADD_GPIO_ITEM(GPIOB, 13, 0),
+    //magician 8
+    ADD_GPIO_ITEM(GPIOB, 14, 0),  
+    ADD_GPIO_ITEM(GPIOB, 15, 0),
+    //magician 9
+    ADD_GPIO_ITEM(GPIOA, 8, 0),  
+    ADD_GPIO_ITEM(GPIOA, 9, 0),
 };
 
 

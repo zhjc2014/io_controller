@@ -9,19 +9,13 @@
 #define P_ADDR_BASE                0x64
 //global addr
 #define PC_ADDR                    (G_ADDR_BASE + 0x1)
-#define CB_ADDR                    (G_ADDR_BASE + 0x2) 
-#define DRIVER0_ADDR               (G_ADDR_BASE + 0x10)
-#define CAR0_ADDR                  (G_ADDR_BASE + 0x32)   //default global addr
-#define CAR1_ADDR                  (G_ADDR_BASE + 0x33)   
-#define CAR2_ADDR                  (G_ADDR_BASE + 0x34)   
-#define CAR3_ADDR                  (G_ADDR_BASE + 0x35)   
-#define CAR4_ADDR                  (G_ADDR_BASE + 0x36)   
-#define NO_GADDR                   (G_ADDR_BASE + 0x63)   //invalid global addr
+#define RC_BOARD_ADDR              (G_ADDR_BASE + 0x2)
+#define RX_BOARD_ADDR              (G_ADDR_BASE + 0x3)
+#define IO_BOARD_ADDR              (G_ADDR_BASE + 0x20)
+#define NO_GADDR                   (G_ADDR_BASE + 0x63)     //invalid global addr
+
 //private addr
-#define MB_ADDR                    (P_ADDR_BASE + 0x1)
-#define BLOOD_ADDR                 (P_ADDR_BASE + 0x2)
-#define RC_ADDR                    (P_ADDR_BASE + 0x3)
-#define NO_ADDR                    (P_ADDR_BASE + 0x64)
+///
 
 //Õ®”√√¸¡ÓºØ --- update  shell  cfg_param
 #define COMM_CMD_SET                    0x1

@@ -607,7 +607,7 @@ typedef struct
 #define CAN_FilterFIFO0             CAN_Filter_FIFO0
 #define CAN_FilterFIFO1             CAN_Filter_FIFO1
 #define CAN_ID_STD                  CAN_Id_Standard           
-                                                                                                                            #define CAN_ID_EXT                  CAN_Id_Extended
+#define CAN_ID_EXT                  CAN_Id_Extended
 #define CAN_RTR_DATA                CAN_RTR_Data         
 #define CAN_RTR_REMOTE              CAN_RTR_Remote
 #define CANTXFAILE                  CAN_TxStatus_Failed

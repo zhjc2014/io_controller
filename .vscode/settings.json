@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "x_frame.h": "c",
+        "bsp_can.h": "c"
+    }
+}

@@ -204,9 +204,9 @@ static void run_unpack(link_hal_item* p_link)
                             frame_info.link_id = tag_link_id;
                             protocol_send_by_id(&frame_info);
                             //data from car
-                            if (frame_info.src >= CAR0_ADDR && frame_info.src <= CAR4_ADDR){
-                                nrf_lost_cnt = 0;
-                            }
+                            // if (frame_info.src >= CAR0_ADDR && frame_info.src <= CAR4_ADDR){
+                            //     nrf_lost_cnt = 0;
+                            // }
                             
                         }else if (pack_type == IS_HOST_PACK){
                             //查找并且调用响应函数

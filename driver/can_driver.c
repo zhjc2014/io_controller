@@ -31,6 +31,10 @@ int32_t drv_can_ctrl (uint32_t ctrl_cmd, uint8_t* pDest, uint32_t len, uint32_t*
 {
     if (CAN_START_SEND == ctrl_cmd){
         bsp_can_start_send();
+    }else if (CAN_SET_FILTER == ctrl_cmd){
+        uint32_t id;
+        id = *(uint32_t*)pDest;
+        bsp_can_set_filter(id);
     }
     return RET_OK;
 }

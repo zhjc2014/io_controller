@@ -23,26 +23,15 @@ static kfifo2_t can_rx_fifo = {"can_rx_fifo", CAN_RX_BUF_SIZE, sizeof(CanRxMsg),
 
 #if EN_FILTER
 
-static uint16_t id[] = 
-{
-//    CB_ADDR,
-    DRIVER0_ADDR + 0x00,
-    DRIVER0_ADDR + 0x01,    
-    DRIVER0_ADDR + 0x02,
-    DRIVER0_ADDR + 0x03,
-};
+//static uint16_t default_id = IO_BOARD_ADDR + 0x00;
 
-static CAN_FilterInitTypeDef can_rxfilter[] = 
-{
-//    {0x0000, 0x0000, 0xFFFF, 0xFFFF, CAN_Filter_FIFO0, 0, CAN_FilterMode_IdMask, CAN_FilterScale_32bit, ENABLE},   //
-    {0x0000, 0x0000, 0xFFFF, 0xFFFF, CAN_Filter_FIFO0, 1, CAN_FilterMode_IdMask, CAN_FilterScale_32bit, ENABLE},   //
-    {0x0000, 0x0000, 0xFFFF, 0xFFFF, CAN_Filter_FIFO0, 2, CAN_FilterMode_IdMask, CAN_FilterScale_32bit, ENABLE},   //
-    {0x0000, 0x0000, 0xFFFF, 0xFFFF, CAN_Filter_FIFO0, 3, CAN_FilterMode_IdMask, CAN_FilterScale_32bit, ENABLE},   //
-    {0x0000, 0x0000, 0xFFFF, 0xFFFF, CAN_Filter_FIFO0, 4, CAN_FilterMode_IdMask, CAN_FilterScale_32bit, ENABLE},   //
-};
+static CAN_FilterInitTypeDef can_rxfilter = {0x0000, 0x0000, 0xFFFF, 0xFFFF, CAN_Filter_FIFO0, 0, CAN_FilterMode_IdMask, CAN_FilterScale_32bit, ENABLE};
 
-const static uint8_t can_rxfilter_len = sizeof(can_rxfilter) / sizeof(CAN_FilterInitTypeDef);
+//const static uint8_t can_rxfilter_len = ARRY_ITEMS_NUM(can_rxfilter);
 #endif
+
+
+void bsp_can_set_filter(uint32_t id);
 
 void can_nvic_cfg (void)  
 {  
@@ -87,20 +76,9 @@ void bsp_can_init(void)
 //    CAN_InitStructure.CAN_BS1 = CAN_BS1_6tq;
 //    CAN_InitStructure.CAN_BS2 = CAN_BS2_8tq;
     
-    
     CAN_Init(CAN1, &CAN_InitStructure);
     //filter config
     //http://blog.csdn.net/flydream0/article/details/8148791 
-#if EN_FILTER
-    {
-        int i;
-        for (i = 0; i < can_rxfilter_len; i++){    
-            can_rxfilter[i].CAN_FilterIdHigh = id[i] << 5;
-            can_rxfilter[i].CAN_FilterIdLow  = 0 | CAN_ID_STD;
-            CAN_FilterInit(&can_rxfilter[i]);
-        }
-    }
-#endif
     //GPIO init
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
         
@@ -156,8 +134,8 @@ int  bsp_can_write(can_data_t *can_txdata)
     can_txmsg.DLC = can_txdata->len;
     memcpy(can_txmsg.Data, can_txdata->data , can_txdata->len);
     kfifo2_push_in(&can_tx_fifo, (uint8_t*)&can_txmsg, 1);
-    len =  kfifo2_have_len(&can_tx_fifo); 
-    return 0;
+    len = kfifo2_have_len(&can_tx_fifo); 
+    return len;
 }
 
 void bsp_can_start_send(void)
@@ -170,6 +148,16 @@ void bsp_can_start_send(void)
         CAN_ITConfig(CAN1, CAN_IT_TME, ENABLE);    
     }
 }
+
+void bsp_can_set_filter(uint32_t id)
+{
+#if EN_FILTER
+    can_rxfilter.CAN_FilterIdHigh = id << 5;
+    can_rxfilter.CAN_FilterIdLow  = 0 | CAN_ID_STD;
+    CAN_FilterInit(&can_rxfilter);
+#endif
+}
+
 
 void USB_LP_CAN1_RX0_IRQHandler(void)  
 {  
