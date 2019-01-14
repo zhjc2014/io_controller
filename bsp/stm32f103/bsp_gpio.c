@@ -28,7 +28,7 @@ typedef struct
 const gpio_cfg_t gpio_tab[]=
 {
     //led
-    ADD_GPIO_ITEM(GPIOA, 15, 0),  
+    ADD_GPIO_ITEM(GPIOC, 13, 0),  
 
     //can addr bit
     ADD_GPIO_ITEM(GPIOB, 4, 1),  

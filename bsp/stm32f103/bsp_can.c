@@ -55,6 +55,25 @@ void bsp_can_init(void)
     CAN_InitTypeDef CAN_InitStructure;
     
     GPIO_InitTypeDef GPIO_InitStruct;
+    
+    //filter config
+    //http://blog.csdn.net/flydream0/article/details/8148791 
+    //GPIO init
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+        
+    GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;
+    GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF_PP;
+    GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOB, &GPIO_InitStruct);
+    
+    GPIO_InitStruct.GPIO_Pin = GPIO_Pin_8;
+    GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IPU;
+    GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+    GPIO_PinRemapConfig(GPIO_Remap1_CAN1, ENABLE);
+
     CAN_DeInit(CAN1);
     CAN_StructInit(&CAN_InitStructure);
     //RCC enable
@@ -77,22 +96,6 @@ void bsp_can_init(void)
 //    CAN_InitStructure.CAN_BS2 = CAN_BS2_8tq;
     
     CAN_Init(CAN1, &CAN_InitStructure);
-    //filter config
-    //http://blog.csdn.net/flydream0/article/details/8148791 
-    //GPIO init
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-        
-    GPIO_InitStruct.GPIO_Pin = GPIO_Pin_11;
-    GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IPU;
-    GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_Init(GPIOA, &GPIO_InitStruct);
-    
-    GPIO_InitStruct.GPIO_Pin = GPIO_Pin_12;
-    GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF_PP;
-    GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_Init(GPIOA, &GPIO_InitStruct);
-    
-//    GPIO_PinRemapConfig(GPIO_Remap1_CAN1, ENABLE);
 
     //can interrupt config
     can_nvic_cfg();
